@@ -29,5 +29,11 @@ namespace trackpuls.ViewModels
             }
 
         }
+        public void btnsignIn() {
+            //ActivateItem(new CompanyViewModels());
+            var conductor = this.Parent as IConductor;
+            conductor.ActivateItem(new CompanyViewModel());
+
+        }
     }
 }

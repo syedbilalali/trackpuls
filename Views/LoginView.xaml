@@ -12,7 +12,7 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
-    <Grid  Height="652.754" Width="400">
+    <Grid  Height="auto" Width="auto">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="43*"/>
@@ -34,7 +34,7 @@
                     </Grid>
                     <Grid VerticalAlignment="Bottom" Margin="10,40,10,0">
                         <StackPanel Orientation="Vertical">
-                            <Button Width="350" Height="40" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="15,0" Content="Sign In"  RenderTransformOrigin="0.511,-0.773"/>
+                            <Button x:Name="btnsignIn" Width="350" Height="40" IsEnabled="true" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="15,0" Content="Sign In"  RenderTransformOrigin="0.511,-0.773"/>
                             <Label Content="or" HorizontalAlignment="Center" Visibility="Hidden" VerticalAlignment="Stretch"    Foreground="Gray" FontWeight="Light"  FontSize="16"/>
                             <Button Width="350" Height="40" HorizontalAlignment="Center" Visibility="Hidden" Background="White" Foreground="#FF2196F3" VerticalAlignment="Bottom" Margin="0" Content="Continue with Google" BorderBrush="#FFF4F7F9"/>
                         </StackPanel>

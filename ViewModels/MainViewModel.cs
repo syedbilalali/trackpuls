@@ -19,6 +19,12 @@ namespace trackpuls.ViewModels
         {
             //ActivateItem(new LoginViewModel());
         }
+        public void btnsignIn()
+        {
+            // ActivateItem(new CompanyViewModel());
+          //  System.Diagnostics.Debug.WriteLine(" Hello WOrld");
+
+        }
     }
     
 }

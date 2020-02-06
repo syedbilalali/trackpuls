@@ -23,21 +23,25 @@ namespace trackpuls.Views
         public MainView()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += MainView_MouseLeftButtonDown;
             
         }
+        private void MainView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
         //-------------Window Button------------//
-
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
         private void CloseBtn_MouseEnter(object sender, MouseEventArgs e)
         {
-            Close.Source = new BitmapImage(new Uri(@"../Assets/1+.png", UriKind.Relative));
+            Close.Source = new BitmapImage(new Uri(@"../Assets/1+.ico", UriKind.Relative));
         }
         private void CloseBtn_MouseLeave(object sender, MouseEventArgs e)
         {
-            Close.Source = new BitmapImage(new Uri(@"../Assets/1.png", UriKind.Relative));
+            Close.Source = new BitmapImage(new Uri(@"../Assets/1.ico", UriKind.Relative));
         }
         private void MinimiseBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -45,11 +49,11 @@ namespace trackpuls.Views
         }
         private void MinimiseBtn_MouseEnter(object sender, MouseEventArgs e)
         {
-            Minimise.Source = new BitmapImage(new Uri(@"../Assets/2+.png", UriKind.Relative));
+            Minimise.Source = new BitmapImage(new Uri(@"../Assets/2+.ico", UriKind.Relative));
         }
         private void MinimiseBtn_MouseLeave(object sender, MouseEventArgs e)
         {
-            Minimise.Source = new BitmapImage(new Uri(@"../Assets/2.png", UriKind.Relative));
+            Minimise.Source = new BitmapImage(new Uri(@"../Assets/2.ico", UriKind.Relative));
         }
         private void PlusBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -57,11 +61,11 @@ namespace trackpuls.Views
         }
         private void PlusBtn_MouseEnter(object sender, MouseEventArgs e)
         {
-            Plus.Source = new BitmapImage(new Uri(@"../Assets/3+.png", UriKind.Relative));
+            Plus.Source = new BitmapImage(new Uri(@"../Assets/3+.ico", UriKind.Relative));
         }
         private void PlusBtn_MouseLeave(object sender, MouseEventArgs e)
         {
-            Plus.Source = new BitmapImage(new Uri(@"../Assets/3.png", UriKind.Relative));
+            Plus.Source = new BitmapImage(new Uri(@"../Assets/3.ico", UriKind.Relative));
         }
         //-------------Window Button------------//
     }

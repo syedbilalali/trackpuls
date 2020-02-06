@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:trackpuls.Views"
         mc:Ignorable="d"
-        Title="Login" Height="652.754" Width="400" 
+        Title="Login" Height="666" Width="384" 
         ResizeMode="NoResize" Top="10"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -23,20 +23,21 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="36*"></RowDefinition>
+            <RowDefinition Height="40*"></RowDefinition>
             <RowDefinition Height="554*"></RowDefinition>
             <RowDefinition Height="63*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Background="#ededec" Orientation="Horizontal">
-            <Button Name="CloseBtn" Style="{DynamicResource MaterialDesignToolButton}" Click="CloseBtn_Click" MouseEnter="CloseBtn_MouseEnter" MouseLeave="CloseBtn_MouseLeave">
-                <Image Name="Close"  Source="../Assets/1.png" Height="16" Width="16"  />
+            <Button Name="CloseBtn" Margin="7,0,0,0"  Style="{DynamicResource MaterialDesignToolButton}" Click="CloseBtn_Click" MouseEnter="CloseBtn_MouseEnter" MouseLeave="CloseBtn_MouseLeave">
+                <Image Name="Close"  Source="../Assets/1.ico" Height="12" Width="12"  />
             </Button>
-            <Button Name="MinimiseBtn" Style="{DynamicResource MaterialDesignToolButton}" Click="MinimiseBtn_Click" MouseEnter="MinimiseBtn_MouseEnter" MouseLeave="MinimiseBtn_MouseLeave">
-                <Image Name="Minimise" Source="../Assets/2.png" Height="16" Width="16"  />
+            <Button Name="MinimiseBtn"   Style="{DynamicResource MaterialDesignToolButton}" Click="MinimiseBtn_Click" MouseEnter="MinimiseBtn_MouseEnter" MouseLeave="MinimiseBtn_MouseLeave">
+                <Image Name="Minimise" Source="../Assets/2.ico" Height="12" Width="12"  />
             </Button>
-            <Button Name="PlusBtn" Style="{DynamicResource MaterialDesignToolButton}" Click="PlusBtn_Click" MouseEnter="PlusBtn_MouseEnter" MouseLeave="PlusBtn_MouseLeave">
-                <Image Name="Plus" Source="../Assets/3.png" Height="16" Width="16" />
+            <Button Name="PlusBtn"  Style="{DynamicResource MaterialDesignToolButton}" Click="PlusBtn_Click" MouseEnter="PlusBtn_MouseEnter" MouseLeave="PlusBtn_MouseLeave">
+                <Image Name="Plus" Source="../Assets/3.ico" Height="12" Width="12" />
             </Button>
+            <Image HorizontalAlignment="Center" Margin="70,0,0,0" Source="../Assets/trackpuls-logo.png"/>
         </StackPanel>
         <Grid Grid.Row="1">
             <ContentControl Grid.Row="1" x:Name="ActiveItem"></ContentControl>
