@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using trackpuls.ViewModels;
 
 namespace trackpuls.Views
 {
@@ -22,6 +23,7 @@ namespace trackpuls.Views
         public MainView()
         {
             InitializeComponent();
+            
         }
         //-------------Window Button------------//
 
