@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using trackpuls.ViewModels;
@@ -33,7 +34,15 @@ namespace trackpuls.Views
         //-------------Window Button------------//
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if (!AlreadyFaded)
+            {
+                AlreadyFaded = true;
+             //   e.Cancel = true;
+                var anim = new DoubleAnimation(0, (Duration)TimeSpan.FromSeconds(2));
+                anim.Completed += new EventHandler(anim_Completed);
+                this.BeginAnimation(UIElement.OpacityProperty, anim);
+            }
+            //this.Close();
         }
         private void CloseBtn_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -68,5 +77,45 @@ namespace trackpuls.Views
             Plus.Source = new BitmapImage(new Uri(@"../Assets/3.ico", UriKind.Relative));
         }
         //-------------Window Button------------//
+        private bool closeCompleted = false;
+
+
+        private void FormFadeOut_Completed(object sender, EventArgs e)
+        {
+            closeCompleted = true;
+          //   this.Close();
+        }
+
+        //private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+
+        //    if (!closeCompleted)
+        //    {
+        //        FormFadeOut.Begin();
+        //        e.Cancel = true;
+        //    }
+        //}
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            AlreadyFaded = false;
+        }
+
+        bool AlreadyFaded;
+        //private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+        //    if (!AlreadyFaded)
+        //    {
+        //        AlreadyFaded = true;
+        //        e.Cancel = true;
+        //        var anim = new DoubleAnimation(0, (Duration)TimeSpan.FromSeconds(1));
+        //        anim.Completed += new EventHandler(anim_Completed);
+        //        this.BeginAnimation(UIElement.OpacityProperty, anim);
+        //    }
+        //}
+
+        void anim_Completed(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

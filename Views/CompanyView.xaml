@@ -23,7 +23,8 @@
 
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" >
                     <Label Content="Choose Company" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,10" FontWeight="Medium" Foreground="Gray" FontSize="15"/>
-                    <materialDesign:Card Padding="15" Margin="10, 2,10,2" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue" 
+                    
+                        <materialDesign:Card Padding="15" Margin="10, 2,10,2" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue" 
                          UniformCornerRadius="2" >
                         <Grid>
                             <Grid.ColumnDefinitions>

@@ -19,7 +19,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-    <Application.MainWindow>1
+    <Application.MainWindow>
         <Views:MainView/>
     </Application.MainWindow>
 </Application>
