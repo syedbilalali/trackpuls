@@ -16,96 +16,57 @@
     <Grid  Height="auto" Width="auto">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="43*"/>
-                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="*"/>
+       
             </Grid.ColumnDefinitions>
-            <DockPanel LastChildFill = "True" Grid.ColumnSpan="2">
+            <DockPanel LastChildFill = "True" Grid.ColumnSpan="1">
 
-                <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" >
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
                     <Label Content="Choose Company" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,10" FontWeight="Medium" Foreground="Gray" FontSize="15"/>
-                    
-                        <materialDesign:Card Padding="15" Margin="10, 2,10,2" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue" 
-                         UniformCornerRadius="2" >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="7*"/>
-                                <ColumnDefinition Width="44*"/>
-                                <ColumnDefinition Width="15*"/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0" RenderTransformOrigin="0.5,0.5">
-                                <Ellipse.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform Angle="-1.648"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </Ellipse.RenderTransform>
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="../Assets/dc.png" />
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <Grid Grid.Column="1" Margin="10,0,0,0" >
-                                <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}">Company 1</TextBlock>
-                            </Grid>
-                            <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="20" Grid.Column="2" Kind="ArrowRight" Margin="27,8,28,7"></materialDesign:PackIcon>
-                        </Grid>
-                    </materialDesign:Card>
-                    <materialDesign:Card Padding="15" Margin="10, 2,10,2" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue" 
-                         UniformCornerRadius="2" >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="7*"/>
-                                <ColumnDefinition Width="44*"/>
-                                <ColumnDefinition Width="15*"/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0" RenderTransformOrigin="0.5,0.5">
-                                <Ellipse.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform Angle="-1.648"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </Ellipse.RenderTransform>
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="../Assets/dc.png" />
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <Grid Grid.Column="1" Margin="10,0,0,0" >
-                                <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" FontSize="15" Style="{DynamicResource MaterialDesignTitleTextBlock}">Company 1</TextBlock>
-                            </Grid>
-                            <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="20" Grid.Column="2" Kind="ArrowRight" Margin="27,8,28,7"></materialDesign:PackIcon>
-                        </Grid>
-                    </materialDesign:Card>
-                    <materialDesign:Card Padding="15" Margin="10, 2,10,2" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue" 
-                         UniformCornerRadius="2" >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="7*"/>
-                                <ColumnDefinition Width="44*"/>
-                                <ColumnDefinition Width="15*"/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0" RenderTransformOrigin="0.5,0.5">
-                                <Ellipse.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform Angle="-1.648"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </Ellipse.RenderTransform>
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="../Assets/dc.png" />
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <Grid Grid.Column="1" Margin="10,0,0,0" >
-                                <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}">Company 1</TextBlock>
-                            </Grid>
-                            <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="20" Grid.Column="2" Kind="ArrowRight" Margin="27,8,28,7"></materialDesign:PackIcon>
-                        </Grid>
-                    </materialDesign:Card>
-
+                    <ItemsControl Name="ChooseCompany" >
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <materialDesign:Card Padding="15" Margin="10, 2,10,2" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue" 
+                         UniformCornerRadius="2" Width="362" >
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="7*"/>
+                                                <ColumnDefinition Width="44*"/>
+                                                <ColumnDefinition Width="15*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Ellipse Grid.Column="0" RenderTransformOrigin="0.5,0.5">
+                                                <Ellipse.RenderTransform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform/>
+                                                        <SkewTransform/>
+                                                        <RotateTransform Angle="-1.648"/>
+                                                        <TranslateTransform/>
+                                                    </TransformGroup>
+                                                </Ellipse.RenderTransform>
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="../Assets/dc.png" />
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <Grid Grid.Column="1" Margin="10,0,0,0" >
+                                                <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Text="{Binding Name}" Style="{DynamicResource MaterialDesignTitleTextBlock}"></TextBlock>
+                                            </Grid>
+                                            <Button Name="CloseBtn"   Grid.Column="2"   Style="{DynamicResource MaterialDesignToolButton}" Click="CloseBtn_Click">
+                                                <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="30"   Kind="ArrowRight" Margin="27,8,28,7"></materialDesign:PackIcon>
+                                            </Button>
+                                          
+                                          
+   
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </DockPanel>
         </Grid>

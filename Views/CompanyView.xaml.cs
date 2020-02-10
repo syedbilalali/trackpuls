@@ -23,6 +23,23 @@ namespace trackpuls.Views
         public CompanyView()
         {
             InitializeComponent();
+            List<Company> items = new List<Company>();
+            items.Add(new Company() { Name = "John Doe", ID = "42" });
+            items.Add(new Company() { Name = "Jane Doe", ID = "39" });
+            items.Add(new Company() { Name = "Sammy Doe",ID = "13" });
+            items.Add(new Company() { Name = "Syed Bilal Ali", ID = "13" });
+            items.Add(new Company() { Name = "Syed Aman Ali", ID = "13" });
+            ChooseCompany.ItemsSource = items;
         }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hello WOrld ");
+        }
+    }
+    public class Company {
+        
+        public string ID { get; set; }
+        public string Name { get; set;  }
     }
 }
