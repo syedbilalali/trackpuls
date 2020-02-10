@@ -11,6 +11,7 @@
              TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
+             
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
     <UserControl.Resources>
@@ -25,7 +26,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid  Height="auto" Width="auto">
-        <Grid ShowGridLines="false">
+        <Grid ShowGridLines="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="43*"/>
             </Grid.ColumnDefinitions>
@@ -33,10 +34,9 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="535" />
                 <RowDefinition Height="auto" />
-               
             </Grid.RowDefinitions>
-            
             <!--Upper Menu for Attendance and Time Tracking-->
             <materialDesign:Card  materialDesign:ShadowAssist.ShadowDepth="Depth0"  materialDesign:ShadowAssist.ShadowEdges="Bottom" Height="30">
                 <DockPanel LastChildFill = "True" Grid.ColumnSpan="1">
@@ -55,8 +55,23 @@
             <!---Page Content-->
             <ContentControl Grid.Row="3" x:Name="ActiveItem"></ContentControl>
             <!---Bottom Last Sync Seprator-->
-            <Separator Grid.Row="4" Style="{StaticResource MaterialDesignDarkSeparator}" BorderThickness="5" Height="Auto" Margin="0,2,0,3" RenderTransformOrigin="0.502,0.604"  />
-          
+            <Separator Grid.Row="4" Style="{StaticResource MaterialDesignDarkSeparator}" BorderThickness="5" Height="Auto" Margin="0,2,0,3"  />
+            <materialDesign:Card Grid.Row="5" Height="100" materialDesign:ShadowAssist.ShadowDepth="Depth1"  materialDesign:ShadowAssist.ShadowEdges="Top" >
+                <Grid  Height="auto" Width="auto" ShowGridLines="FALSE" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="104"></ColumnDefinition>
+                        <ColumnDefinition Width="auto" MinWidth="50"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Height="Auto" Style="{DynamicResource MaterialDesignToolButton}" Margin="1"  >
+                        <Image Source="../Assets/sync_ic.png"  Width="46" Height="35"></Image>
+                    </Button>
+                    <TextBlock TextWrapping="WrapWithOverflow" FontWeight="Bold" FontSize="11" Foreground="BlueViolet" Margin="10" Grid.Column="1" Text="Last Sync Today at 12:00 PM" />
+                </Grid>
+            </materialDesign:Card>
         </Grid>
     </Grid>
 </UserControl>

@@ -7,7 +7,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:trackpuls.Views"
         mc:Ignorable="d"
-        Title="Login" Height="666" Width="384" 
+        Title="Login" Height="666" Width="384"
         ResizeMode="NoResize" Top="10"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -57,7 +57,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"></RowDefinition>
             <RowDefinition Height="554*"></RowDefinition>
-            <RowDefinition Height="63*"></RowDefinition>
+          
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Background="#ededec" Orientation="Horizontal">
             <Button Name="CloseBtn" Margin="7,0,0,0"  Style="{DynamicResource MaterialDesignToolButton}" Click="CloseBtn_Click" MouseEnter="CloseBtn_MouseEnter" MouseLeave="CloseBtn_MouseLeave">
