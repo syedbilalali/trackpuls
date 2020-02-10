@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:trackpuls.Views"
-            mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+              xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
@@ -55,8 +57,9 @@
                                             <Grid Grid.Column="1" Margin="10,0,0,0" >
                                                 <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Text="{Binding Name}" Style="{DynamicResource MaterialDesignTitleTextBlock}"></TextBlock>
                                             </Grid>
-                                            <Button Name="CloseBtn"   Grid.Column="2"   Style="{DynamicResource MaterialDesignToolButton}" Click="CloseBtn_Click">
+                                            <Button Grid.Column="2"   x:Name="btnSelectCompany" cal:Message.Attach="SayHello($Name)"  Style="{DynamicResource MaterialDesignToolButton}" >
                                                 <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="30"   Kind="ArrowRight" Margin="27,8,28,7"></materialDesign:PackIcon>
+                                               
                                             </Button>
                                           
                                           
