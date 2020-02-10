@@ -7,7 +7,18 @@ using Caliburn.Micro;
 
 namespace trackpuls.ViewModels
 {
-    class TrackMainViewModel : Conductor<object>
+    public class TrackMainViewModel : Conductor<object>
     {
+        public void btnAttendanceTrack() {
+
+             //System.Windows.MessageBox.Show(" Attendane Track View ");
+             ActivateItem(new AttendanceViewModel());
+        }
+        public void btnTimeTrack() {
+
+            //System.Windows.MessageBox.Show(" Time Track ");
+            ActivateItem(new TimeTrackViewModel());
+        }
     }
+
 }

@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-            
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:trackpuls.Views"
-            mc:Ignorable="d" 
+             mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
@@ -17,7 +16,6 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
@@ -26,9 +24,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-
-
-    <Grid  Height="652.754" Width="400">
+    <Grid  Height="auto" Width="auto">
         <Grid ShowGridLines="false">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="43*"/>
@@ -37,35 +33,30 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" MinHeight="508" />
-                <RowDefinition Height="auto" MinHeight="6" />
-                <RowDefinition Height="100" />
+                <RowDefinition Height="auto" />
+               
             </Grid.RowDefinitions>
+            
+            <!--Upper Menu for Attendance and Time Tracking-->
             <materialDesign:Card  materialDesign:ShadowAssist.ShadowDepth="Depth0"  materialDesign:ShadowAssist.ShadowEdges="Bottom" Height="30">
                 <DockPanel LastChildFill = "True" Grid.ColumnSpan="1">
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">
+                        <Button x:Name="btnAttendanceTrack" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">
                             Attendance
                         </Button>
-                        <Button  Style="{StaticResource MaterialDesignFlatButton}"   ToolTip="MaterialDesignFlatButton">
+                        <Button x:Name="btnTimeTrack"  Style="{StaticResource MaterialDesignFlatButton}"   ToolTip="MaterialDesignFlatButton">
                             Time Tracking
                         </Button>
                     </StackPanel>
                 </DockPanel>
             </materialDesign:Card>
+            <!--Upper Menu Seprator-->
             <Separator Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3"  />
-
-            <Separator Grid.Row="4" Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3" RenderTransformOrigin="0.502,0.604"  />
-            <materialDesign:Card  Grid.Row="5" materialDesign:ShadowAssist.ShadowDepth="Depth3"   HorizontalAlignment="Left" Height="0" Width="0" >
-                <Grid Background="{DynamicResource PrimaryHueLightBrush}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                </Grid>
-            </materialDesign:Card>
+            <!---Page Content-->
+            <ContentControl Grid.Row="3" x:Name="ActiveItem"></ContentControl>
+            <!---Bottom Last Sync Seprator-->
+            <Separator Grid.Row="4" Style="{StaticResource MaterialDesignDarkSeparator}" BorderThickness="5" Height="Auto" Margin="0,2,0,3" RenderTransformOrigin="0.502,0.604"  />
+          
         </Grid>
     </Grid>
 </UserControl>
