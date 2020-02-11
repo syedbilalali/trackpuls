@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using trackpuls.ViewModels;
+using MaterialDesignThemes.Wpf;
 
 namespace trackpuls.Views
 {

@@ -25,6 +25,10 @@ namespace trackpuls.ViewModels
           //  System.Diagnostics.Debug.WriteLine(" Hello WOrld");
 
         }
+        public void ProfBtn() {
+            // System.Diagnostics.Debug.WriteLine(" Hello WOrld");
+            System.Windows.MessageBox.Show("CLick");
+        }
     }
     
 }
