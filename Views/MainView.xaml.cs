@@ -22,11 +22,14 @@ namespace trackpuls.Views
     /// </summary>
     public partial class MainView : Window
     {
+        private readonly Storyboard _storyboard;
         public MainView()
         {
             InitializeComponent();
             this.MouseLeftButtonDown += MainView_MouseLeftButtonDown;
-            
+
+          
+
         }
         private void MainView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

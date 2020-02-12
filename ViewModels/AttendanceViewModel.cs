@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Windows;
 using System.Windows.Input;
+using trackpuls.Models;
 
 namespace trackpuls.ViewModels
 {
     public class AttendanceViewModel : Screen
     {
+        #region Private Properties
         private string _todayDate = DateTime.Now.ToString("MMMM, dd yyyy");
         private string _startedTime = "Not Started Yet";
         private string _timeSpan = "00:00:00 h";
@@ -18,20 +20,17 @@ namespace trackpuls.ViewModels
         private System.Windows.Threading.DispatcherTimer dispatcherTimer;
         private bool _btnClockOut = false;
         private bool _btnClockIn = true;
-        public enum Visibility { Collapsed , Hidden , Visible };
-        private Visibility _CIvisibility  = Visibility.Hidden;
-        private Visibility _COvisibility = Visibility.Hidden;
+        private List<Timeslab> _timeslabs = new List<Timeslab>();
+        private BindableCollection<Timeslab> _people = new BindableCollection<Timeslab>();
+        #endregion
+        #region Constructor
         public AttendanceViewModel() {
-
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Interval = new TimeSpan(0,0,1);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
         }
-        private void DispatcherTimer_Tick(object sender, EventArgs e)
-        {   
-            TimeSpan value = _lastTime.Subtract(DateTime.Now);
-            lblTimeSpan = value.Duration().ToString(@"hh\:mm\:ss") + " h";
-        }
+        #endregion
+        #region Getter Setter Properties 
         public string lbltoday {
             get {
                 return _todayDate;
@@ -65,50 +64,63 @@ namespace trackpuls.ViewModels
             }
             set {
                 _btnClockOut = value;
-                NotifyOfPropertyChange(() => _btnClockOut);
+                NotifyOfPropertyChange(() => IsClockOut);
             }
         }
         public bool IsClockIn {
             get {
-                return _btnClockOut;
+                return _btnClockIn;
             }
             set {
                 _btnClockIn = value;
-                NotifyOfPropertyChange(()=> _btnClockOut);
+                NotifyOfPropertyChange(()=> IsClockIn);
             }
         }
+        public List<Timeslab> Timeslabs {
+            get
+            {
+                return _timeslabs;
+            }
+            set
+            {
+                _timeslabs = value;
+                NotifyOfPropertyChange(() => Timeslabs);
+            }
+        }
+        public BindableCollection<Timeslab> People
+        {
+            get { return _people; }
+            set { _people = value; }
+        }
+        #endregion
+        #region Methods
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan value = _lastTime.Subtract(DateTime.Now);
+            lblTimeSpan = value.Duration().ToString(@"hh\:mm\:ss") + " h";
+        }
         public void btnClockIn(){
-
+           
             lblStarted = "Started At " + DateTime.Now.ToString("h:mm tt");
             _lastTime = DateTime.Now;
-          //  lblTimeSpan = DateTime.Now.ToLongTimeString();
-            //System.Windows.MessageBox.Show(" On Clock In");
+            
+            IsClockIn = false;
+            IsClockOut = true;
             dispatcherTimer.Start();
         }
         public void btnClockOut() {
-             
-            System.Windows.MessageBox.Show(" On Clock Out");
-            dispatcherTimer.Stop();
-        }
-        public Visibility CIVisibility {
-            get { 
-                return _CIvisibility; 
-            }
-            set { 
-                _CIvisibility = value;
-                NotifyOfPropertyChange(()=> _CIvisibility);
-            }
-        }
-        public Visibility COVisibility {
 
-            get {
-
-                return _COvisibility;
-            }
-            set {
-                _COvisibility = value;
-                NotifyOfPropertyChange(() => _COvisibility);
-            }
+            //Set Button Visibility
+            TimeSpan duration = _lastTime.Subtract(DateTime.Now);
+           People.Add(new Timeslab() { ID= People.Count, ClockIn = _lastTime.ToString("h:mm:ss tt"), ClockOut = DateTime.Now.ToString("h:mm:ss tt"), Duration = duration.Duration().ToString(@"hh\:mm\:ss") });
+            People.OrderByDescending(e => e.ID);
+           IsClockIn = true;
+           IsClockOut = false;
+           lblStarted = "Not Started Yet";
+           TimeSpan value = TimeSpan.Zero;
+           lblTimeSpan = value.Duration().ToString(@"hh\:mm\:ss") + " h";
+           dispatcherTimer.Stop();
         }
+        #endregion
     }
 }

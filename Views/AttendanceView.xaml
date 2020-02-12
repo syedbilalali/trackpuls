@@ -15,6 +15,9 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="Converter" />
+    </UserControl.Resources>
     <Grid Grid.Row="3" Height="auto" Width="auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="180"></RowDefinition>
@@ -50,12 +53,12 @@
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Button Grid.Column="0" Margin="10,10,7,11" x:Name="btnClockIn"  Style="{StaticResource MaterialDesignRaisedAccentButton}"
-    ToolTip="Resource name: " Visibility="{ Binding Path}"  Height="Auto">
+    ToolTip="Clock in to start timer."  Visibility="{Binding IsClockIn, Converter={StaticResource Converter},  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="Auto">
                     Clock In
                 </Button>
                     <Button Grid.Column="0" Margin="10,10,7,11" x:Name="btnClockOut"
-    Style="{StaticResource MaterialDesignRaisedAccentButton}" Background="Yellow"
-    ToolTip="Resource name: " Visibility="Visible" Height="Auto"  >
+    Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+    ToolTip="Clock Out to stop timer." Visibility="{Binding IsClockOut, Converter={StaticResource Converter }, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="Auto"  >
                         Clock Out
                     </Button>
                     <Button Grid.Column="1" IsEnabled="False" Margin="10,10,0,11"
@@ -70,12 +73,15 @@
                 </StackPanel>
             </Grid>
         </Grid>
+            <materialDesign:Card.RenderTransform>
+                <TranslateTransform />
+            </materialDesign:Card.RenderTransform>
       </materialDesign:Card>
         <DockPanel LastChildFill = "True" Grid.Row="1">
 
             <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
                 <Label Content="Today" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" FontWeight="Bold" Foreground="Gray" FontSize="12"/>
-                <ItemsControl Name="ChooseCompany" >
+                <ItemsControl x:Name="People">
                     <ItemsControl.ItemContainerStyle>
                         <Style TargetType="ContentPresenter">
                         </Style>
@@ -94,17 +100,17 @@
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}">Clock In</TextBlock>
-                                            <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}">16:00</TextBlock>
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding ClockIn}"  Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}"></TextBlock>
 
                                         </StackPanel>
                                         <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}">Clock Out</TextBlock>
-                                            <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}">16:00</TextBlock>
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding ClockOut}" Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}"></TextBlock>
 
                                         </StackPanel>
                                         <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                                            <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}">16:00:00</TextBlock>
+                                            <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="{Binding Duration }"></TextBlock>
 
                                         </StackPanel>
                                     </Grid>

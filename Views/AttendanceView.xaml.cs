@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using trackpuls.Models;
 
 namespace trackpuls.Views
 {
@@ -23,10 +24,7 @@ namespace trackpuls.Views
         public AttendanceView()
         {
             InitializeComponent();
-            List<Company> items = new List<Company>();
-            items.Add(new Company() { Name = "John Doe", ID = "42" });
-            items.Add(new Company() { Name = "Jane Doe", ID = "39" });
-            ChooseCompany.ItemsSource = items;
+        
         }
     }
     

@@ -111,6 +111,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Timeslab.cs" />
     <Compile Include="ViewModels\AttendanceViewModel.cs" />
     <Compile Include="ViewModels\CompanyViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

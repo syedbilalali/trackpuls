@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+
 
 namespace trackpuls.Views
 {
@@ -20,9 +24,15 @@ namespace trackpuls.Views
     /// </summary>
     public partial class TrackMainView : UserControl
     {
+
+    
         public TrackMainView()
         {
             InitializeComponent();
+           
+
         }
+
+      
     }
 }
