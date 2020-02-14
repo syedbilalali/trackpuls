@@ -47,6 +47,8 @@ namespace trackpuls.Views
                 this.BeginAnimation(UIElement.OpacityProperty, anim);
             }
             //this.Close();
+            System.Windows.Application.Current.Shutdown();
+           //x System.Windows.Application.Current.Exit();
         }
         private void CloseBtn_MouseEnter(object sender, MouseEventArgs e)
         {

@@ -26,7 +26,7 @@ namespace trackpuls.ViewModels
         #region Constructor
         public AttendanceViewModel() {
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Interval = new TimeSpan(0,0,1);
+            dispatcherTimer.Interval = new TimeSpan(0,0,0);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
         }
         #endregion
@@ -111,9 +111,8 @@ namespace trackpuls.ViewModels
         public void btnClockOut() {
 
             //Set Button Visibility
-            TimeSpan duration = _lastTime.Subtract(DateTime.Now);
+           TimeSpan duration = _lastTime.Subtract(DateTime.Now);
            People.Add(new Timeslab() { ID= People.Count, ClockIn = _lastTime.ToString("h:mm:ss tt"), ClockOut = DateTime.Now.ToString("h:mm:ss tt"), Duration = duration.Duration().ToString(@"hh\:mm\:ss") });
-            People.OrderByDescending(e => e.ID);
            IsClockIn = true;
            IsClockOut = false;
            lblStarted = "Not Started Yet";
