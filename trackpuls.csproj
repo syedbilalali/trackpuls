@@ -84,6 +84,8 @@
       <HintPath>packages\MaterialDesignThemes.3.0.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -112,8 +114,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AttachedProperties\PasswordBoxHelper.cs" />
+    <Compile Include="IShell.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Timeslab.cs" />
+    <Compile Include="Validation\DomainValidator.cs" />
+    <Compile Include="Validation\EmailValidator.cs" />
+    <Compile Include="Validation\IValidationControl.cs" />
+    <Compile Include="Validation\MultipleEmailValidator.cs" />
+    <Compile Include="Validation\PathValidator.cs" />
+    <Compile Include="Validation\RequiredEx.cs" />
+    <Compile Include="Validation\StrongPasswordValidator.cs" />
+    <Compile Include="Validation\ValidatingScreen.cs" />
+    <Compile Include="Validation\ValidationGroupAttribute.cs" />
     <Compile Include="ViewModels\AttendanceViewModel.cs" />
     <Compile Include="ViewModels\CompanyViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

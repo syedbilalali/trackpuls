@@ -29,6 +29,7 @@ namespace trackpuls
             {
                 //First get the 'user-scoped' storage information location reference in the assembly
                 IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
+                
                 //create a stream reader object to read content from the created isolated location
                 StreamReader srReader = new StreamReader(new IsolatedStorageFileStream("isotest", FileMode.OpenOrCreate, isolatedStorage));
 
@@ -41,9 +42,10 @@ namespace trackpuls
                 {
                     //MessageBox.Show(stateReader.ReadLine());
                     while (!srReader.EndOfStream)
-                    {
+                    {   
+                    
                         string item = srReader.ReadLine();
-                        App.Current.Properties["email"] = item.ToString();
+                       // App.Current.Properties["email"] = item.ToString();
                         System.Windows.MessageBox.Show(item);
                     }
                 }
@@ -69,20 +71,19 @@ namespace trackpuls
 
                 //First get the 'user-scoped' storage information location reference in the assembly
                 IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
-
                 //create a stream writer object to write content in the location
                 StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream("isotest", FileMode.Create, isolatedStorage));
                 System.Windows.MessageBox.Show(" On Exit " + srWriter.ToString());
                 //check the Application property collection contains any values.
-                if (App.Current.Properties["email"] != null)
+                if (App.Current.Properties["email"] != null && App.Current.Properties["password"] != null)
                 {
                     //wriet to the isolated storage created in the above code section.
                     System.Windows.MessageBox.Show("Data : " + App.Current.Properties["email"].ToString());
                     //srWriter.WriteLine(App.Current.Properties["email"].ToString() + " : (Stored at : " + System.DateTime.Now.ToLongTimeString() + ")");
+                    srWriter.WriteLine(App.Current.Properties["password"].ToString());
                     srWriter.WriteLine(App.Current.Properties["email"].ToString());
 
                 }
-
                 timer.Stop();
                 srWriter.Flush();
                 srWriter.Close();
@@ -96,9 +97,11 @@ namespace trackpuls
         void timer_Tick(object sender, EventArgs e)
         {
 
-           try { 
+           try {
+                
             Bitmap captureBitmap = new Bitmap(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
-                Random random = new Random();
+            Random random = new Random();
+
             //Creating a Rectangle object which will capture our Current Screen
             System.Drawing.Rectangle captureRectangle = System.Windows.Forms.Screen.AllScreens[0].Bounds;
 
@@ -110,11 +113,12 @@ namespace trackpuls
 
             //Saving the Image File (I am here Saving it in My E drive).
             captureBitmap.Save(@"D:\Screenshot\Capture_"+random.Next()+".jpg", ImageFormat.Jpeg);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Exception In Time Ticker Methods.. " + ex.Message);
-           }
+            }
         }
 
     }

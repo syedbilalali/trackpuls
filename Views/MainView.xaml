@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:trackpuls.Views"
+        xmlns:track ="clr-namespace:trackpuls"
         mc:Ignorable="d"
         Title="Login" Height="666" Width="384"
         ResizeMode="NoResize" Top="10"
