@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,10 +37,44 @@ namespace trackpuls.Views
         {
             MessageBox.Show("Hello WOrld ");
         }
+        private System.Drawing.Image GenerateAvtarImage(String text, Font font, System.Drawing.Color textColor, System.Drawing.Color backColor, string filename)
+        {
+            //first, create a dummy bitmap just to get a graphics object  
+            System.Drawing.Image img = new Bitmap(1, 1);
+            Graphics drawing = Graphics.FromImage(img);
+
+            //measure the string to see how big the image needs to be  
+            SizeF textSize = drawing.MeasureString(text, font);
+
+            //free up the dummy image and old graphics object  
+            img.Dispose();
+            drawing.Dispose();
+
+            //create a new image of the right size  
+            img = new Bitmap(110, 110);
+
+            drawing = Graphics.FromImage(img);
+
+            //paint the background  
+            drawing.Clear(backColor);
+
+            //create a brush for the text  
+            System.Drawing.Brush textBrush = new SolidBrush(textColor);
+
+            //drawing.DrawString(text, font, textBrush, 0, 0);  
+            drawing.DrawString(text, font, textBrush, new System.Drawing.Rectangle(-2, 20, 200, 110));
+
+            drawing.Save();
+
+            textBrush.Dispose();
+            drawing.Dispose();
+            return img;
+        }
     }
     public class Company {
         
         public string ID { get; set; }
         public string Name { get; set;  }
     }
+    
 }

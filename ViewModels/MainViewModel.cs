@@ -13,11 +13,10 @@ namespace trackpuls.ViewModels
     public class MainViewModel : Conductor<object>
     {
         public SnackbarMessageQueue BoundMessageQueue { get; } = new SnackbarMessageQueue();
-        //public RelayCommand<string> SendMessageCommand { get; }
-      //  public RelayCommand<string> SendWithPubSubCommand { get; }
+        private bool _btnProfilePic = false;
         public MainViewModel() {
 
-            ActivateItem( new LoginViewModel());
+            ActivateItem( new LoginViewModel(this));
            
         }
         public void LoadLoginPage()
@@ -27,16 +26,22 @@ namespace trackpuls.ViewModels
         public void btnsignIn()
         {
             // ActivateItem(new CompanyViewModel());
-          //  System.Diagnostics.Debug.WriteLine(" Hello WOrld");
+            //  System.Diagnostics.Debug.WriteLine(" Hello WOrld");
+            BoundMessageQueue.Enqueue("Hello WOlrd");
 
         }
         public void ProfBtn() {
-            // System.Diagnostics.Debug.WriteLine(" Hello WOrld");
-            //  System.Windows.MessageBox.Show("CLick");
-            BoundMessageQueue.Enqueue("Hello World");
+           
         }
         public void showMessage(string message ) {
             BoundMessageQueue.Enqueue(message);
+        }
+        public bool IsProfilePic{
+            get { return _btnProfilePic;  }
+            set {
+                _btnProfilePic = value;
+                NotifyOfPropertyChange(() => IsProfilePic);
+            }
         }
     }
     public interface MConductor<T> : IConductor {

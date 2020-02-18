@@ -27,8 +27,7 @@ namespace trackpuls.Views
         {
             InitializeComponent();
             this.MouseLeftButtonDown += MainView_MouseLeftButtonDown;
-
-          
+           
 
         }
         private void MainView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -122,6 +121,12 @@ namespace trackpuls.Views
         void anim_Completed(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void OnWindowStateChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show(" On dbl click Window State  ");
+
+
         }
     }
 }

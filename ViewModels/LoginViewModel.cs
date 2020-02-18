@@ -21,7 +21,6 @@ namespace trackpuls.ViewModels
         private string _email;
         private string _password;
 
-
         #region Validating Screen Ovverides 
         
         /// <summary>
@@ -41,8 +40,10 @@ namespace trackpuls.ViewModels
            // shellView.Password.Password = Password;
         }
         #endregion
-        public LoginViewModel() {
+        private IConductor parent;
+        public LoginViewModel(IConductor parent) {
             System.Windows.MessageBox.Show(" On Login Load.. " );
+            this.parent = parent;
             if (App.Current.Properties["email"]!= null && App.Current.Properties["password"] != null) {
                 System.Windows.MessageBox.Show("Properties : " + App.Current.Properties["email"].ToString() );
                 Email = App.Current.Properties["email"].ToString();
@@ -86,29 +87,35 @@ namespace trackpuls.ViewModels
             if (!(control is PasswordBox)) return;
             this.Password = (control as PasswordBox).Password;
         }
+
         /// <summary>
 		/// Example guard method
 		/// </summary>
 		public bool Guard { get; set; }
-
         #region Close button
-
 
 
         public void btnsignIn() {
 
             App.Current.Properties["email"] = Email;
             App.Current.Properties["password"] = Password;
-            //ActivateItem(new CompanyViewModels());
-            // App.Current.Properties[0] = Email;
-            System.Windows.MessageBox.Show("Email " + App.Current.Properties["email"].ToString() + " Password " + App.Current.Properties["password"].ToString());
-         //   App.Current.Properties[1] = Password;
-               // var conductor = this.Parent as IConductor;
-              
-           //  conductor.ActivateItem(new CompanyViewModel());
-           // conductor.showMessage("");
+            var conductor = this.Parent as IConductor;
+            if (Email != null && Password != null) {
 
+                if (Email.Equals("test@gmail.com") && Password.Equals("Ali.aazaan@123"))
+                {
+                    conductor.ActivateItem(new CompanyViewModel(this.parent));
+                    var parent = this.parent as MainViewModel;
+                    parent.showMessage(" Login Sucessfully... ");
+                }
+                else {
+                    var parent = this.parent as MainViewModel;
+                    parent.showMessage(" Invalid Login Credentials !!! ");
+                }
+            }
+            
         }
+
         /// <summary>
         /// This property is bound to the IsEnabled property of the 'Close' 
         /// button so the enabled state can be controlled by the validation 
@@ -119,10 +126,6 @@ namespace trackpuls.ViewModels
         {
             get { return !HasErrorsByGroup(); }
         }
-
-        /// <summary>
-        /// Just displays an acknowledgement that the button was pressed
-        /// </summary>
         #endregion
     }
 }

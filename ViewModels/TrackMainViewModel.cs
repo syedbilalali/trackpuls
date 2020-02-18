@@ -12,14 +12,18 @@ namespace trackpuls.ViewModels
 {
     public class TrackMainViewModel : Conductor<object>
     {
-        
-        public TrackMainViewModel() {
-           
+        private IConductor parent;
+        public TrackMainViewModel(IConductor parent) {
+            this.parent = parent;
+            showProf();
+        }
+        private void showProf() {
+            var parent = this.parent as MainViewModel;
+            parent.IsProfilePic = true;
         }
         public void btnAttendanceTrack() {
 
             //System.Windows.MessageBox.Show(" Attendane Track View ");
-           
             ActivateItem(new AttendanceViewModel());
         }
         public void btnTimeTrack() {

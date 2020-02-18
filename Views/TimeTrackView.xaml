@@ -3,10 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:trackpuls.Views"
+              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock>Time Track</TextBlock>  
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="Converter" />
+        <SolidColorBrush x:Key="textBg">#f0f0f0</SolidColorBrush>
+        <SolidColorBrush x:Key="textFg">#8995a5</SolidColorBrush>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" 
+                x:Name="Bd" BorderBrush="Black"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid Grid.Row="3" Height="auto" Width="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1" Margin="10" BorderBrush="#f0f0f0" CornerRadius="5">
+            <TextBlock 
+            Background="#f0f0f0" Foreground="#8995a5"  RenderTransformOrigin="0.5,0.5">
+          Search Projects</TextBlock>
+        </Border>
+        <DockPanel LastChildFill = "True" Grid.Row="1">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
+                <Label Content="Assigned Projects" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" FontWeight="Bold" Foreground="Gray" FontSize="11"/>
+                <Image Margin="0,30,0,0" Width="384" Height="250"  Source="../Assets/no-result.png"></Image>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </UserControl>

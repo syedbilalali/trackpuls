@@ -9,21 +9,19 @@ namespace trackpuls.ViewModels
 {
     public class CompanyViewModel : Screen
     {
-        public void btnSelectCompany() {
 
-            var conductor = this.Parent as IConductor;
-            conductor.ActivateItem(new TrackMainViewModel());
-        }
-        public void SayHello()
-        {
-            System.Windows.MessageBox.Show("Hello World From the Model");
+        private IConductor parent;
+        public CompanyViewModel(IConductor parent) {
+
+            this.parent = parent;
         }
         public void SayHello(string name)
         {
-           // System.Windows.MessageBox.Show("Hello World From the Model " + name);
-            var conductor = this.Parent as IConductor;
-            conductor.ActivateItem(new TrackMainViewModel());
 
+            var conductor = this.Parent as IConductor;
+            var parent = this.parent as MainViewModel;
+            parent.showMessage(" Company Sucessfully... ");
+            conductor.ActivateItem(new TrackMainViewModel(this.parent));
         }
     }
 }
