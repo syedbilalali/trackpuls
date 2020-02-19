@@ -34,7 +34,7 @@ namespace Caliburn.Micro.Validation
 		public StrongPasswordValidatorAttribute()
 
             //Complex Regex : @"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$"
-            : base(@"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$") { }
+            : base(@"^[0-9]+$") { }
 
 		#region IValidationControl
 

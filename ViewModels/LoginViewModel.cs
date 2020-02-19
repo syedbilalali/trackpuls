@@ -11,6 +11,8 @@ using Caliburn.Micro.Validation;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Controls;
+using trackpuls.Models;
+using trackpuls.Services;
 using trackpuls;
 
 namespace trackpuls.ViewModels
@@ -95,22 +97,31 @@ namespace trackpuls.ViewModels
         #region Close button
 
 
-        public void btnsignIn() {
+        public async void  btnsignIn() {
 
             App.Current.Properties["email"] = Email;
             App.Current.Properties["password"] = Password;
             var conductor = this.Parent as IConductor;
             if (Email != null && Password != null) {
 
-                if (Email.Equals("test@gmail.com") && Password.Equals("Ali.aazaan@123"))
-                {
-                    conductor.ActivateItem(new CompanyViewModel(this.parent));
-                    var parent = this.parent as MainViewModel;
-                    parent.showMessage(" Login Sucessfully... ");
+                try { 
+                
+                    LoginResp resp = await LoginService.p_Login(Email, Password);
+                    if (resp.result == 1)
+                    {
+                        conductor.ActivateItem(new CompanyViewModel(this.parent));
+                        var parent = this.parent as MainViewModel;
+                        parent.showMessage(" Login Sucessfully... ");
+                    }
+                    else {
+                        var parent = this.parent as MainViewModel;
+                        parent.showMessage(" Invalid Login Credentials !!! ");
+                    }
                 }
-                else {
+                catch (Exception ex)
+                {
                     var parent = this.parent as MainViewModel;
-                    parent.showMessage(" Invalid Login Credentials !!! ");
+                    parent.showMessage(ex.Message);
                 }
             }
             

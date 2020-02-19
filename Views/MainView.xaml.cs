@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using trackpuls.ViewModels;
 using MaterialDesignThemes.Wpf;
+using System.Windows.Navigation;
 
 namespace trackpuls.Views
 {
@@ -125,8 +126,11 @@ namespace trackpuls.Views
         private void OnWindowStateChanged(object sender, EventArgs e)
         {
             MessageBox.Show(" On dbl click Window State  ");
+             
 
-
+        }
+        public void closeLeft() {
+            LeftDrawerHost.IsLeftDrawerOpen = false;
         }
     }
 }

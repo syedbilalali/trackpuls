@@ -24,7 +24,7 @@ namespace trackpuls
         }
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            System.Windows.MessageBox.Show(" On Start ");
+            //System.Windows.MessageBox.Show(" On Start ");
             try
             {
                 //First get the 'user-scoped' storage information location reference in the assembly
@@ -58,7 +58,6 @@ namespace trackpuls
                 throw;
             }
             DisplayRootViewFor<MainViewModel>();
-          
             timer.Interval = TimeSpan.FromSeconds(60);
             timer.Tick += timer_Tick;
             timer.Start();
@@ -110,10 +109,12 @@ namespace trackpuls
 
             //Copying Image from The Screen
             captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
+                //string Path = System.IO.Path.GetDirectoryName(Assem);
 
-            //Saving the Image File (I am here Saving it in My E drive).
-            captureBitmap.Save(@"D:\Screenshot\Capture_"+random.Next()+".jpg", ImageFormat.Jpeg);
-
+           captureBitmap.Save(Path.GetDirectoryName(Environment.CurrentDirectory) + "Capture_" + random.Next() + ".jpg", ImageFormat.Jpeg);
+           
+               
+          //  captureBitmap.Save(@"D:\Screenshot\Capture_"+random.Next()+".jpg", ImageFormat.Jpeg);
             }
             catch (Exception ex)
             {

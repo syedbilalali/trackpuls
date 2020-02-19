@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:cal="http://www.caliburnproject.org"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:trackpuls.Views"
         xmlns:track ="clr-namespace:trackpuls"
@@ -57,7 +58,7 @@
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0,0,0,1" CornerRadius="3" />
     </WindowChrome.WindowChrome>
-    <materialDesign:DrawerHost LeftDrawerBackground="{DynamicResource MaterialDesignPaper}">
+    <materialDesign:DrawerHost x:Name="LeftDrawerHost" RightDrawerBackground="{DynamicResource MaterialDesignPaper}" >
         <Grid ShowGridLines="false" Name="pnlView" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -87,11 +88,15 @@
             <materialDesign:Snackbar Grid.Row="1" MessageQueue="{Binding BoundMessageQueue}"  x:Name="Snackbar" HorizontalAlignment="Stretch"/>
         </Grid>
         <materialDesign:DrawerHost.RightDrawerContent>
+            <StackPanel Height="662" Width="300">
             <DockPanel Width="300">
                 <TextBlock DockPanel.Dock="Top" Text="Account" FontSize="20" Margin="5"  FontWeight="Light"  HorizontalAlignment="Center"/>
-
-                <TextBlock DockPanel.Dock="Bottom" Text="Sign Out" FontSize="15" Margin="10" FontWeight="DemiBold" Foreground="OrangeRed"  HorizontalAlignment="Left"/>
-                <Separator DockPanel.Dock="Bottom" Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3"  />
+                <!--<TextBlock DockPanel.Dock="Bottom" Text="Sign Out" FontSize="15" Margin="10" FontWeight="DemiBold"  Foreground="OrangeRed"   HorizontalAlignment="Left"/>-->
+                    <Button  DockPanel.Dock="Bottom" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                    CommandParameter="{x:Static Dock.Right}" FontSize="15" Margin="10" FontWeight="DemiBold"  Foreground="OrangeRed"   HorizontalAlignment="Left" cal:Message.Attach="[Action btnSignOut() ]"  Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Click here to signout..">
+                        Signout
+                    </Button>
+                    <Separator DockPanel.Dock="Bottom" Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3"  />
                 <StackPanel Width="300" >
                     <TextBlock  Text="Companies" FontSize="12" Margin="7" FontWeight="Medium" Foreground="BurlyWood"  HorizontalAlignment="Left"/>
                     <Separator  Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3" />
@@ -129,7 +134,7 @@
                                     <ColumnDefinition Width="150"></ColumnDefinition>
                                     <ColumnDefinition Width="150"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0"  Text="Jhon" FontSize="15"  FontWeight="Medium" Margin="10" Foreground="BurlyWood"  HorizontalAlignment="Left"/>
+                                    <TextBlock Grid.Column="0"  Text="Jhon" FontSize="15"  FontWeight="Medium" Margin="10" Foreground="BurlyWood"  HorizontalAlignment="Left"/>
                                 <materialDesign:PackIcon Grid.Column="1" Visibility="Hidden" Kind="Tick" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>
                             </Grid>
                             <Separator  Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3" />
@@ -137,6 +142,7 @@
                     </ScrollViewer>
                 </StackPanel>
             </DockPanel>
+            </StackPanel>
         </materialDesign:DrawerHost.RightDrawerContent>
     </materialDesign:DrawerHost>
 </Window>

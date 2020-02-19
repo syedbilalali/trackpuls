@@ -43,8 +43,11 @@ namespace trackpuls.ViewModels
                 NotifyOfPropertyChange(() => IsProfilePic);
             }
         }
-    }
-    public interface MConductor<T> : IConductor {
-        void showMessage(string message);
+        public void btnSignOut() {
+            //System.Windows.MessageBox.Show("Signout");
+          IsProfilePic = false;
+          //  LeftDrawerHost.IsLeftDrawerOpen = false;
+            ActivateItem(new LoginViewModel(this));
+        }
     }
 }
