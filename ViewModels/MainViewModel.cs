@@ -17,23 +17,12 @@ namespace trackpuls.ViewModels
         public MainViewModel() {
 
             ActivateItem( new LoginViewModel(this));
-           
-        }
-        public void LoadLoginPage()
-        {
-            //ActivateItem(new LoginViewModel());
-        }
-        public void btnsignIn()
-        {
-            // ActivateItem(new CompanyViewModel());
-            //  System.Diagnostics.Debug.WriteLine(" Hello WOrld");
-            BoundMessageQueue.Enqueue("Hello WOlrd");
-
         }
         public void ProfBtn() {
            
         }
         public void showMessage(string message ) {
+
             BoundMessageQueue.Enqueue(message);
         }
         public bool IsProfilePic{
@@ -44,10 +33,10 @@ namespace trackpuls.ViewModels
             }
         }
         public void btnSignOut() {
-            //System.Windows.MessageBox.Show("Signout");
+
           IsProfilePic = false;
           //  LeftDrawerHost.IsLeftDrawerOpen = false;
-            ActivateItem(new LoginViewModel(this));
+          ActivateItem(new LoginViewModel(this));
         }
     }
 }

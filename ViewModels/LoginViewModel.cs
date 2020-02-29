@@ -107,11 +107,11 @@ namespace trackpuls.ViewModels
                 try { 
                 
                     LoginResp resp = await LoginService.p_Login(Email, Password);
-                    if (resp.result == 1)
+                    if (resp.status == "true")
                     {
                         conductor.ActivateItem(new CompanyViewModel(this.parent));
                         var parent = this.parent as MainViewModel;
-                        parent.showMessage(" Login Sucessfully... ");
+                        parent.showMessage(" Login Sucessfully... " + resp.data.email);
                     }
                     else {
                         var parent = this.parent as MainViewModel;

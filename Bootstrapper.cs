@@ -34,6 +34,7 @@ namespace trackpuls
                 StreamReader srReader = new StreamReader(new IsolatedStorageFileStream("isotest", FileMode.OpenOrCreate, isolatedStorage));
 
                 //Open the isolated storage
+
                 if (srReader == null)
                 {
                     System.Windows.MessageBox.Show("No Data stored!");

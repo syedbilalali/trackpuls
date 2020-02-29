@@ -26,7 +26,7 @@ namespace trackpuls.Services
 
                 bool isNetwork = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
                 if (!isNetwork) 
-                   throw new Exception("No Internet Connection !!! ");
+                   throw new Exception(" No Internet Connection !!! ");
     
                 using (var client = new HttpClient()) {
 
@@ -50,13 +50,13 @@ namespace trackpuls.Services
                     });
 
                     //HTTP POST
-                    response = await client.PostAsync("api/Login/login1", content).ConfigureAwait(false);
+                    response = await client.PostAsync("api/Login/post_user_login", content).ConfigureAwait(false);
                     if (response.IsSuccessStatusCode)
                     {
                         // Reading Response.
                         string result = response.Content.ReadAsStringAsync().Result;
+                        System.Windows.MessageBox.Show(result);
                         resp = JsonConvert.DeserializeObject<LoginResp>(result);
-
                         // Releasing.
                         response.Dispose();
                     }
@@ -64,7 +64,7 @@ namespace trackpuls.Services
                     {
                         // Reading Response.
                         string result = response.Content.ReadAsStringAsync().Result;
-                        resp.result = 0;
+                        resp.status = "false";
                     }
                 }
             }
