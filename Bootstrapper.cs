@@ -59,7 +59,7 @@ namespace trackpuls
                 throw;
             }
             DisplayRootViewFor<MainViewModel>();
-            timer.Interval = TimeSpan.FromSeconds(60);
+            timer.Interval = TimeSpan.FromSeconds(10);
             timer.Tick += timer_Tick;
             timer.Start();
         }
@@ -76,13 +76,13 @@ namespace trackpuls
                 System.Windows.MessageBox.Show(" On Exit " + srWriter.ToString());
                 //check the Application property collection contains any values.
                 if (App.Current.Properties["email"] != null && App.Current.Properties["password"] != null)
-                {
+                {    
+
                     //wriet to the isolated storage created in the above code section.
                     System.Windows.MessageBox.Show("Data : " + App.Current.Properties["email"].ToString());
                     //srWriter.WriteLine(App.Current.Properties["email"].ToString() + " : (Stored at : " + System.DateTime.Now.ToLongTimeString() + ")");
                     srWriter.WriteLine(App.Current.Properties["password"].ToString());
                     srWriter.WriteLine(App.Current.Properties["email"].ToString());
-
                 }
                 timer.Stop();
                 srWriter.Flush();
@@ -111,9 +111,13 @@ namespace trackpuls
             //Copying Image from The Screen
             captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
                 //string Path = System.IO.Path.GetDirectoryName(Assem);
-
-           captureBitmap.Save(Path.GetDirectoryName(Environment.CurrentDirectory) + "Capture_" + random.Next() + ".jpg", ImageFormat.Jpeg);
-           
+                string applicationPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+           var dir = new System.IO.DirectoryInfo(System.IO.Path.Combine(applicationPath, "shots"));
+           if (!dir.Exists)
+            dir.Create();
+                System.Windows.MessageBox.Show(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
+           //captureBitmap.Save(Path.GetDirectoryName(Environment.CurrentDirectory + "/shots/") + "Capture_" + random.Next() + ".jpg", ImageFormat.Jpeg);
+           captureBitmap.Save(System.IO.Path.Combine(dir.FullName, "Capture_" + random.Next() + ".jpg"), ImageFormat.Jpeg);
                
           //  captureBitmap.Save(@"D:\Screenshot\Capture_"+random.Next()+".jpg", ImageFormat.Jpeg);
             }

@@ -123,10 +123,8 @@ namespace trackpuls.ViewModels
                     var parent = this.parent as MainViewModel;
                     parent.showMessage(ex.Message);
                 }
-            }
-            
+            }   
         }
-
         /// <summary>
         /// This property is bound to the IsEnabled property of the 'Close' 
         /// button so the enabled state can be controlled by the validation 
