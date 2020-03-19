@@ -13,9 +13,13 @@ namespace trackpuls.ViewModels
     public class TrackMainViewModel : Conductor<object>
     {
         private IConductor parent;
+        private Screen attendence;
+        private Screen timetrack;
         public TrackMainViewModel(IConductor parent) {
             this.parent = parent;
             showProf();
+            attendence = new AttendanceViewModel();
+            ActivateItem(attendence);
         }
         private void showProf() {
             var parent = this.parent as MainViewModel;
@@ -24,12 +28,27 @@ namespace trackpuls.ViewModels
         public void btnAttendanceTrack() {
 
             //System.Windows.MessageBox.Show(" Attendane Track View ");
-            ActivateItem(new AttendanceViewModel());
+            if (attendence != null)
+            {
+                ActivateItem(this.attendence);
+            }
+            else {
+                attendence = new AttendanceViewModel();
+                ActivateItem(attendence);
+            }
+            
         }
         public void btnTimeTrack() {
 
             //System.Windows.MessageBox.Show(" Time Track ");
-            ActivateItem(new TimeTrackViewModel());
+            if (timetrack != null) {
+                ActivateItem(this.timetrack);
+            }
+            else {
+                timetrack = new TimeTrackViewModel();
+                ActivateItem(timetrack);
+            }
+            
         }
     }
 

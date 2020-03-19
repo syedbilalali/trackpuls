@@ -12,6 +12,8 @@ using System.IO.IsolatedStorage;
 using trackpuls.ViewModels;
 using System.Drawing.Imaging;
 using System.Drawing;
+using trackpuls.Services;
+using trackpuls.Models;
 
 namespace trackpuls
 {
@@ -29,7 +31,6 @@ namespace trackpuls
             {
                 //First get the 'user-scoped' storage information location reference in the assembly
                 IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
-                
                 //create a stream reader object to read content from the created isolated location
                 StreamReader srReader = new StreamReader(new IsolatedStorageFileStream("isotest", FileMode.OpenOrCreate, isolatedStorage));
 
@@ -47,7 +48,7 @@ namespace trackpuls
                     
                         string item = srReader.ReadLine();
                        // App.Current.Properties["email"] = item.ToString();
-                        System.Windows.MessageBox.Show(item);
+                       // System.Windows.MessageBox.Show(item);
                     }
                 }
                 //close reader
@@ -58,8 +59,9 @@ namespace trackpuls
                 MessageBox.Show(ex.Message);
                 throw;
             }
+
             DisplayRootViewFor<MainViewModel>();
-            timer.Interval = TimeSpan.FromSeconds(10);
+            timer.Interval = TimeSpan.FromSeconds(60);
             timer.Tick += timer_Tick;
             timer.Start();
         }
@@ -73,13 +75,13 @@ namespace trackpuls
                 IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
                 //create a stream writer object to write content in the location
                 StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream("isotest", FileMode.Create, isolatedStorage));
-                System.Windows.MessageBox.Show(" On Exit " + srWriter.ToString());
+              //  System.Windows.MessageBox.Show(" On Exit " + srWriter.ToString());
                 //check the Application property collection contains any values.
                 if (App.Current.Properties["email"] != null && App.Current.Properties["password"] != null)
                 {    
 
                     //wriet to the isolated storage created in the above code section.
-                    System.Windows.MessageBox.Show("Data : " + App.Current.Properties["email"].ToString());
+                    //System.Windows.MessageBox.Show("Data : " + App.Current.Properties["email"].ToString());
                     //srWriter.WriteLine(App.Current.Properties["email"].ToString() + " : (Stored at : " + System.DateTime.Now.ToLongTimeString() + ")");
                     srWriter.WriteLine(App.Current.Properties["password"].ToString());
                     srWriter.WriteLine(App.Current.Properties["email"].ToString());
@@ -94,7 +96,7 @@ namespace trackpuls
                 throw;
             }
         }
-        void timer_Tick(object sender, EventArgs e)
+       async void timer_Tick(object sender, EventArgs e)
         {
 
            try {
@@ -111,15 +113,26 @@ namespace trackpuls
             //Copying Image from The Screen
             captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
                 //string Path = System.IO.Path.GetDirectoryName(Assem);
-                string applicationPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+           string applicationPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
            var dir = new System.IO.DirectoryInfo(System.IO.Path.Combine(applicationPath, "shots"));
            if (!dir.Exists)
             dir.Create();
-                System.Windows.MessageBox.Show(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
-           //captureBitmap.Save(Path.GetDirectoryName(Environment.CurrentDirectory + "/shots/") + "Capture_" + random.Next() + ".jpg", ImageFormat.Jpeg);
-           captureBitmap.Save(System.IO.Path.Combine(dir.FullName, "Capture_" + random.Next() + ".jpg"), ImageFormat.Jpeg);
-               
-          //  captureBitmap.Save(@"D:\Screenshot\Capture_"+random.Next()+".jpg", ImageFormat.Jpeg);
+             //   System.Windows.MessageBox.Show(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
+                //captureBitmap.Save(Path.GetDirectoryName(Environment.CurrentDirectory + "/shots/") + "Capture_" + random.Next() + ".jpg", ImageFormat.Jpeg);
+                string imagePath = System.IO.Path.Combine(dir.FullName, "Capture_" + random.Next() + ".jpg");
+                captureBitmap.Save(imagePath, ImageFormat.Bmp);
+                //captureBitmap.Save(@"D:\Screenshot\Capture_"+random.Next()+".jpg", ImageFormat.Jpeg);
+                FileInfo fileInfo = new FileInfo(imagePath);
+                // The byte[] to save the data in
+                byte[] data = new byte[fileInfo.Length];
+                // Load a filestream and put its content into the byte[]
+                using (FileStream fs = fileInfo.OpenRead())
+                {
+                    fs.Read(data, 0, data.Length);
+                }
+                ScreenResp resp = await ScreenshotService.p_UploadScreenshot("2", data);
+                // Delete the temporary file
+                fileInfo.Delete();
             }
             catch (Exception ex)
             {

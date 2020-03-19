@@ -13,10 +13,10 @@ namespace trackpuls.Services
 {
     public class ScreenshotService
     {
-        public static async Task<LoginResp> p_UploadScreenshot(string user_id , byte[] image)
+        public static async Task<ScreenResp> p_UploadScreenshot(string user_id , byte[] image)
         {
 
-            LoginResp resp = new LoginResp();
+            ScreenResp resp = new ScreenResp();
             try
             {
 
@@ -31,19 +31,12 @@ namespace trackpuls.Services
                     var reqcontent = new MultipartFormDataContent();
                     var imageContent = new ByteArrayContent(image);
                     imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
-                    var content = new FormUrlEncodedContent(new[]
-                    {
-                             new KeyValuePair<string, string>("user_id","1")
-                    });
-                    reqcontent.Add(content, "user_id");
-                    reqcontent.Add(imageContent, "picture", "image.jpg");
-
+                    reqcontent.Add(imageContent, "picture", "Screen_Cap.jpg");
+                    reqcontent.Add(new StringContent(user_id) , "user_id");                  
                     //Set API Timeout 
                     client.Timeout = TimeSpan.FromSeconds(Convert.ToDouble(1000000));
-
                     // Initialization.
                     HttpResponseMessage response = new HttpResponseMessage();
-
                     //Setting Parameter
                     //HTTP POST
                     response = await client.PostAsync("api/ScreenshotController/upload_img_api" , reqcontent).ConfigureAwait(false);
@@ -51,8 +44,8 @@ namespace trackpuls.Services
                     {
                         // Reading Response.
                         string result = response.Content.ReadAsStringAsync().Result;
-                        System.Windows.MessageBox.Show(result);
-                        resp = JsonConvert.DeserializeObject<LoginResp>(result);
+                       //  System.Windows.MessageBox.Show(result);
+                        resp = JsonConvert.DeserializeObject<ScreenResp>(result);
                         // Releasing.
                         response.Dispose();
                     }

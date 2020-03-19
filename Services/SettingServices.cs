@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Caliburn.Micro;
 
-namespace trackpuls.ViewModels
+namespace trackpuls.Services
 {
-    public class TimeTrackViewModel : Screen
+    class SettingServices
     {
     }
 }

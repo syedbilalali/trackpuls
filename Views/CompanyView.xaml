@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:trackpuls.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
@@ -61,9 +61,7 @@
                                                 <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="30"   Kind="ArrowRight" Margin="27,8,28,7"></materialDesign:PackIcon>
                                                
                                             </Button>
-                                          
-                                          
-   
+                                   
                                         </Grid>
                                     </materialDesign:Card>
                                 </WrapPanel>

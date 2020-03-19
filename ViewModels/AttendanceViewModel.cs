@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using System.Windows;
 using System.Windows.Input;
 using trackpuls.Models;
+using trackpuls.Services;
 
 namespace trackpuls.ViewModels
 {
@@ -23,6 +24,9 @@ namespace trackpuls.ViewModels
         private List<Timeslab> _timeslabs = new List<Timeslab>();
         private BindableCollection<Timeslab> _people = new BindableCollection<Timeslab>();
         #endregion
+
+
+
         #region Constructor
         public AttendanceViewModel() {
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
@@ -30,6 +34,7 @@ namespace trackpuls.ViewModels
             dispatcherTimer.Tick += DispatcherTimer_Tick;
         }
         #endregion
+
         #region Getter Setter Properties 
         public string lbltoday {
             get {
@@ -99,20 +104,46 @@ namespace trackpuls.ViewModels
             TimeSpan value = _lastTime.Subtract(DateTime.Now);
             lblTimeSpan = value.Duration().ToString(@"hh\:mm\:ss") + " h";
         }
-        public void btnClockIn(){
+        public async void btnClockIn(){
            
             lblStarted = "Started At " + DateTime.Now.ToString("h:mm tt");
             _lastTime = DateTime.Now;
             
             IsClockIn = false;
             IsClockOut = true;
+            try {
+           
+                AttendenceResp resp = await AttendenceService.p_attendence("110", _lastTime.ToString("HH:mm:ss"), "00:00:00", "00:00:00", "10:00:00", "2");
+                if (resp.status == "true") {
+
+                    MessageBox.Show(" Successfully Save the Details " + _lastTime.ToString("HH:mm:ss"));
+                }
+            } catch (Exception e) {
+
+                MessageBox.Show(" Exception : " + e.Message);
+            }
             dispatcherTimer.Start();
         }
-        public void btnClockOut() {
+        public async void btnClockOut() {
 
-            //Set Button Visibility
+           //Set Button Visibility
            TimeSpan duration = _lastTime.Subtract(DateTime.Now);
+
            People.Add(new Timeslab() { ID= People.Count, ClockIn = _lastTime.ToString("h:mm:ss tt"), ClockOut = DateTime.Now.ToString("h:mm:ss tt"), Duration = duration.Duration().ToString(@"hh\:mm\:ss") });
+            try
+            {
+                AttendenceResp resp = await AttendenceService.p_attendence("110", _lastTime.ToString("HH:mm:ss"), DateTime.Now.ToString("HH:mm:ss"), duration.Duration().ToString(@"hh\:mm\:ss"), "10:00:00", "2");
+                if (resp.status == "true")
+                {
+                    MessageBox.Show(" Successfully Save the Details " + _lastTime.ToString("HH:mm:ss"));
+                }
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(" Exception : " + e.Message);
+            }
+
            IsClockIn = true;
            IsClockOut = false;
            lblStarted = "Not Started Yet";

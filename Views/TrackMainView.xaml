@@ -45,7 +45,8 @@
                             Attendance
                         </Button>
                         <Button x:Name="btnTimeTrack"  Style="{StaticResource MaterialDesignFlatButton}"   ToolTip="MaterialDesignFlatButton">
-                            Time Tracking
+                            Projects List
+                            <!-- "Time Tracking"  Menu Name -->
                         </Button>
                     </StackPanel>
                 </DockPanel>

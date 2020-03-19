@@ -2,33 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
-using System.Configuration.Assemblies;
 using trackpuls.Models;
 
 namespace trackpuls.Services
 {
-    public class LoginService
-    {   
-        /// <summary>
-        /// This POST method validate the Login Details to Client Crednetials 
-        /// </summary>
-        /// <param name="email">Put Email of the Employee </param>
-        /// <param name="Password">Put Password of the Employee</param>
-        /// <returns></returns>
-        public static async Task<LoginResp> p_Login(string email , string password) {
+    public class ProjectListServices
+    {
+        public static async Task<Projects> p_ProjectList(string userid)
+        {
 
-            LoginResp resp = new LoginResp();
-            try {
+            Projects resp = new Projects();
+            try
+            {
 
                 bool isNetwork = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
-                if (!isNetwork) 
-                   throw new Exception(" No Internet Connection !!! ");
- 
-                using (var client = new HttpClient()) {
+                if (!isNetwork)
+                    throw new Exception(" No Internet Connection !!! ");
+
+                using (var client = new HttpClient())
+                {
 
                     client.BaseAddress = new Uri("http://trackpuls.younggeeks.net/");
 
@@ -45,17 +42,16 @@ namespace trackpuls.Services
                     //Setting Parameter
                     var content = new FormUrlEncodedContent(new[]
                     {
-                             new KeyValuePair<string, string>("email", email)
-                            ,new KeyValuePair<string, string>("password", password)
+                             new KeyValuePair<string, string>("user_id", userid)
                     });
                     //HTTP POST
-                    response = await client.PostAsync("api/Login/post_user_login", content).ConfigureAwait(false);
+                    response = await client.PostAsync("api/ApiProjectController/showapiproject", content).ConfigureAwait(false);
                     if (response.IsSuccessStatusCode)
                     {
                         // Reading Response.
                         string result = response.Content.ReadAsStringAsync().Result;
                         System.Windows.MessageBox.Show(result);
-                        resp = JsonConvert.DeserializeObject<LoginResp>(result);
+                        resp = JsonConvert.DeserializeObject<Projects>(result);
                         // Releasing.
                         response.Dispose();
                     }
@@ -67,8 +63,9 @@ namespace trackpuls.Services
                     }
                 }
             }
-            catch (Exception ex) {
-               throw ex;
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return resp;
         }
