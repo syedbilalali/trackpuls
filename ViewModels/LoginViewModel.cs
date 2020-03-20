@@ -44,13 +44,20 @@ namespace trackpuls.ViewModels
         #endregion
         private IConductor parent;
         public LoginViewModel(IConductor parent) {
-            System.Windows.MessageBox.Show(" On Login Load.. " );
+
             this.parent = parent;
-            if (App.Current.Properties["email"]!= null && App.Current.Properties["password"] != null) {
-                System.Windows.MessageBox.Show("Properties : " + App.Current.Properties["email"].ToString() );
-                Email = App.Current.Properties["email"].ToString();
-                Password = App.Current.Properties["password"].ToString();
+            UserData data = (UserData)App.Current.Properties["userdata"];
+            if (data != null) {
+
+                if (data.email != null && data.password != null)
+                {
+                    System.Windows.MessageBox.Show("Properties : " + data.email + " Password " + data.password);
+                    Email = data.email;
+                    Password = data.password;
+                }
             }
+         
+            
         }
         /// </summary>
 		[Required(ErrorMessage = "Email is required")]
@@ -108,13 +115,16 @@ namespace trackpuls.ViewModels
                 
                     LoginResp resp = await LoginService.p_Login(Email, Password);
                     if (resp.status == "true")
-                    {
-                      //  conductor.ActivateItem(new CompanyViewModel(this.parent));
+                    {    
+                        //System.Windows.MessageBox.Show();
                         conductor.ActivateItem(new TrackMainViewModel(this.parent));
                         var parent = this.parent as MainViewModel;
-                        parent.showMessage(" Login Sucessfully... " + resp.data.email);
+                        parent.showMessage(" Login Sucessfully... " + resp.data[0].email);
+                        resp.data[0].password = App.Current.Properties["password"].ToString();
+                        App.Current.Properties["userdata"] = resp.data[0];
                     }
                     else {
+
                         var parent = this.parent as MainViewModel;
                         parent.showMessage(" Invalid Login Credentials !!! ");
                     }
@@ -123,6 +133,7 @@ namespace trackpuls.ViewModels
                 {
                     var parent = this.parent as MainViewModel;
                     parent.showMessage(ex.Message);
+                    System.Windows.MessageBox.Show("Error : " + ex.Message);
                 }
             }   
         }

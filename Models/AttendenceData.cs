@@ -14,5 +14,7 @@ namespace trackpuls.Models
         public string computer_act { get; set; }
         public string office_time { get; set; }
         public string productive { get; set; }
+        public string status { get; set; }
+        public string id { get; set; }
     }
 }

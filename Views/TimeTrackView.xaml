@@ -51,9 +51,53 @@
             <TextBox AcceptsReturn="True" TextWrapping="Wrap"  Text="Search" />
         </Border>
         <DockPanel LastChildFill = "True" Grid.Row="1">
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" >
                 <Label Content="Assigned Projects" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" FontWeight="Bold" Foreground="Gray" FontSize="11"/>
-                <Image Margin="0,30,0,0" Width="384" Height="250"  Source="../Assets/no-result.png"></Image>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                    <StackPanel DockPanel.Dock="Top"  Orientation="Vertical" Height="440">
+                        <ItemsControl x:Name="ProjectList">
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <materialDesign:Card Padding="15" Margin="10, 2,10,2" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue" 
+                         UniformCornerRadius="2"  Width="360">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="7*"/>
+                                                    <ColumnDefinition Width="44*"/>
+                                                    <ColumnDefinition Width="15*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Ellipse Grid.Column="0" RenderTransformOrigin="0.5,0.5">
+                                                    <Ellipse.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform/>
+                                                            <SkewTransform/>
+                                                            <RotateTransform Angle="-1.648"/>
+                                                            <TranslateTransform/>
+                                                        </TransformGroup>
+                                                    </Ellipse.RenderTransform>
+                                                    <Ellipse.Fill>
+                                                        <ImageBrush ImageSource="../Assets/dc.png" />
+                                                    </Ellipse.Fill>
+                                                </Ellipse>
+                                                <Grid Grid.Column="1" Margin="10,0,0,0" >
+                                                    <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Text="{ Binding name}" Style="{DynamicResource MaterialDesignTitleTextBlock}"></TextBlock>
+                                                </Grid>
+                                                <Button Grid.Column="2" Visibility="Hidden"   x:Name="btnSelectCompany" cal:Message.Attach="SayHello($Name)"  Style="{DynamicResource MaterialDesignToolButton}" >
+                                                    <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="30"   Kind="ArrowRight" Margin="27,8,28,7"></materialDesign:PackIcon>
+                                                </Button>
+                                            </Grid>
+                                        </materialDesign:Card>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
         </DockPanel>
     </Grid>

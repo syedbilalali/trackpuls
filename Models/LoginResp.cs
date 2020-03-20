@@ -10,6 +10,6 @@ namespace trackpuls.Models
     {
         public string status { get; set; }
         public string msg { get; set; }
-        public UserData data {   get; set; }
+        public IList<UserData> data {   get; set; }
     }
 }

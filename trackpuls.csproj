@@ -28,7 +28,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -142,6 +142,7 @@
     <Compile Include="Models\AttendenceResp.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\LoginResp.cs" />
+    <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Projects.cs" />
     <Compile Include="Models\ScreenResp.cs" />
     <Compile Include="Models\Timeslab.cs" />

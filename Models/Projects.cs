@@ -9,6 +9,7 @@ namespace trackpuls.Models
     public class Projects
     {
         public string status { get; set; }
+        public List<Project> data { get; set; }
 
     }
 }

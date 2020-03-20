@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using trackpuls.Models;
 
 namespace trackpuls.Views
 {
@@ -23,6 +24,25 @@ namespace trackpuls.Views
         public TimeTrackView()
         {
             InitializeComponent();
+            //ProjectList.Items.Add(new Project() { name = "Project1 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project2 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project3 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project4 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
+            //ProjectList.Items.Add(new Project() { name = "Project5 ", project_id = "121", user_id = "121" });
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using trackpuls.Services;
 using trackpuls.Models;
+using Newtonsoft.Json;
 
 namespace trackpuls
 {
@@ -21,6 +22,7 @@ namespace trackpuls
     {
         private DispatcherTimer timer;
         public Bootstrapper() {
+
             Initialize();
             timer = new DispatcherTimer();
         }
@@ -32,10 +34,9 @@ namespace trackpuls
                 //First get the 'user-scoped' storage information location reference in the assembly
                 IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
                 //create a stream reader object to read content from the created isolated location
-                StreamReader srReader = new StreamReader(new IsolatedStorageFileStream("isotest", FileMode.OpenOrCreate, isolatedStorage));
+                StreamReader srReader = new StreamReader(new IsolatedStorageFileStream("isotest.txt", FileMode.OpenOrCreate, isolatedStorage));
 
                 //Open the isolated storage
-
                 if (srReader == null)
                 {
                     System.Windows.MessageBox.Show("No Data stored!");
@@ -47,8 +48,10 @@ namespace trackpuls
                     {   
                     
                         string item = srReader.ReadLine();
-                       // App.Current.Properties["email"] = item.ToString();
-                       // System.Windows.MessageBox.Show(item);
+                     //   System.Windows.MessageBox.Show(item);
+                        UserData data = JsonConvert.DeserializeObject<UserData>(item);
+                        App.Current.Properties["userdata"] = data;
+                       // System.Windows.MessageBox.Show(data.email);
                     }
                 }
                 //close reader
@@ -67,28 +70,30 @@ namespace trackpuls
         }
         protected override void OnExit(object sender, EventArgs e)
         {
-
+            string userdata;
             try
             {
 
                 //First get the 'user-scoped' storage information location reference in the assembly
                 IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
                 //create a stream writer object to write content in the location
-                StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream("isotest", FileMode.Create, isolatedStorage));
-              //  System.Windows.MessageBox.Show(" On Exit " + srWriter.ToString());
+                StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream("isotest.txt", FileMode.Create, isolatedStorage));
+                //  System.Windows.MessageBox.Show(" On Exit " + srWriter.ToString());
                 //check the Application property collection contains any values.
+             //   System.Windows.MessageBox.Show(App.Current.Properties["email"].ToString() + " : " + App.Current.Properties["password"].ToString());
                 if (App.Current.Properties["email"] != null && App.Current.Properties["password"] != null)
-                {    
-
+                {
+                    if (App.Current.Properties["userdata"] != null) {
+                        UserData data = (UserData)App.Current.Properties["userdata"];
+                        userdata = JsonConvert.SerializeObject(data);
+                        srWriter.WriteLine(userdata);
+                    }
                     //wriet to the isolated storage created in the above code section.
-                    //System.Windows.MessageBox.Show("Data : " + App.Current.Properties["email"].ToString());
-                    //srWriter.WriteLine(App.Current.Properties["email"].ToString() + " : (Stored at : " + System.DateTime.Now.ToLongTimeString() + ")");
-                    srWriter.WriteLine(App.Current.Properties["password"].ToString());
-                    srWriter.WriteLine(App.Current.Properties["email"].ToString());
+                    //srWriter.WriteLine(App.Current.Properties["email"].ToString());
                 }
-                timer.Stop();
                 srWriter.Flush();
                 srWriter.Close();
+                timer.Stop();
             }
             catch (System.Security.SecurityException sx)
             {
@@ -100,7 +105,8 @@ namespace trackpuls
         {
 
            try {
-                
+
+          //  System.Windows.MessageBox.Show(" Taking Picture");
             Bitmap captureBitmap = new Bitmap(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             Random random = new Random();
 
@@ -130,7 +136,11 @@ namespace trackpuls
                 {
                     fs.Read(data, 0, data.Length);
                 }
-                ScreenResp resp = await ScreenshotService.p_UploadScreenshot("2", data);
+                if (App.Current.Properties["userdata"] != null) {
+                    UserData userdata = (UserData)App.Current.Properties["userdata"];
+                  //  System.Windows.MessageBox.Show("userid " + userdata.id);
+                    ScreenResp resp = await ScreenshotService.p_UploadScreenshot(userdata.id, data);
+                }
                 // Delete the temporary file
                 fileInfo.Delete();
             }

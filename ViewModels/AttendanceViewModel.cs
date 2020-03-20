@@ -23,15 +23,20 @@ namespace trackpuls.ViewModels
         private bool _btnClockIn = true;
         private List<Timeslab> _timeslabs = new List<Timeslab>();
         private BindableCollection<Timeslab> _people = new BindableCollection<Timeslab>();
+        private UserData userData;
+        private string tempID = "0";
         #endregion
 
 
 
         #region Constructor
         public AttendanceViewModel() {
+            userData = (UserData)App.Current.Properties["userdata"];
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Interval = new TimeSpan(0,0,0);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
+            TimeSpan duration = DateTime.Now.Subtract(DateTime.Now);
+           // People.Add(new Timeslab() { ID = People.Count, ClockIn = DateTime.Now.ToString("h:mm:ss tt"), ClockOut = DateTime.Now.ToString("h:mm:ss tt"), Duration = duration.Duration().ToString(@"hh\:mm\:ss") });
         }
         #endregion
 
@@ -105,19 +110,28 @@ namespace trackpuls.ViewModels
             lblTimeSpan = value.Duration().ToString(@"hh\:mm\:ss") + " h";
         }
         public async void btnClockIn(){
-           
+
             lblStarted = "Started At " + DateTime.Now.ToString("h:mm tt");
             _lastTime = DateTime.Now;
             
             IsClockIn = false;
             IsClockOut = true;
             try {
-           
-                AttendenceResp resp = await AttendenceService.p_attendence("110", _lastTime.ToString("HH:mm:ss"), "00:00:00", "00:00:00", "10:00:00", "2");
-                if (resp.status == "true") {
+                   // MessageBox.Show("UserID " + userData.id);
+                    if (userData != null) {
+                        AttendenceResp resp = await AttendenceService.p_clockIn(userData.id, _lastTime.ToString("HH:mm:ss"), "0");
+                        
+                        if (resp.status == "true")
+                        {
 
-                    MessageBox.Show(" Successfully Save the Details " + _lastTime.ToString("HH:mm:ss"));
+                        // MessageBox.Show(" Successfully Save the Details " + _lastTime.ToString("HH:mm:ss"));
+                          tempID = resp.data.id;
+                     //     MessageBox.Show(tempID);
+                        }
+
                 }
+                  
+
             } catch (Exception e) {
 
                 MessageBox.Show(" Exception : " + e.Message);
@@ -132,18 +146,20 @@ namespace trackpuls.ViewModels
            People.Add(new Timeslab() { ID= People.Count, ClockIn = _lastTime.ToString("h:mm:ss tt"), ClockOut = DateTime.Now.ToString("h:mm:ss tt"), Duration = duration.Duration().ToString(@"hh\:mm\:ss") });
             try
             {
-                AttendenceResp resp = await AttendenceService.p_attendence("110", _lastTime.ToString("HH:mm:ss"), DateTime.Now.ToString("HH:mm:ss"), duration.Duration().ToString(@"hh\:mm\:ss"), "10:00:00", "2");
-                if (resp.status == "true")
+                if (tempID != null)
                 {
-                    MessageBox.Show(" Successfully Save the Details " + _lastTime.ToString("HH:mm:ss"));
+                    AttendenceResp resp = await AttendenceService.p_clockout(userData.id, "1", DateTime.Now.ToString("HH:mm:ss"), tempID);
+                    if (resp.status == "true")
+                    {
+                       // MessageBox.Show(" Successfully Save the Details " + _lastTime.ToString("HH:mm:ss"));
+                    }
                 }
+                
             }
             catch (Exception e)
             {
-
                 MessageBox.Show(" Exception : " + e.Message);
             }
-
            IsClockIn = true;
            IsClockOut = false;
            lblStarted = "Not Started Yet";

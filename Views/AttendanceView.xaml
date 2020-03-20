@@ -24,36 +24,36 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <materialDesign:Card Grid.Row="0" Height="180"  materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:BorderBrush="Aqua" materialDesign:ShadowAssist.ShadowEdges="Bottom">
-        <Grid ShowGridLines="False">
-            <Grid.ColumnDefinitions>
+            <Grid ShowGridLines="False">
+                <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="41"></RowDefinition>
-                <RowDefinition Height="79"></RowDefinition>
-                <RowDefinition Height="60"></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <TextBlock x:Name="lblStarted"  FontWeight="Bold" Margin="10" >Not Started Yet</TextBlock>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="41"></RowDefinition>
+                    <RowDefinition Height="79"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock x:Name="lblStarted"  FontWeight="Bold" Margin="10" >Not Started Yet</TextBlock>
 
                     <TextBlock x:Name="lbltoday" FontWeight="Bold" Margin="10"></TextBlock>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock x:Name="lblTimeSpan" FontWeight="Bold" FontFamily="Franklin Gothic Demi" FontSize="48" ></TextBlock>
-            </StackPanel>
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="139"></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="125"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Button Grid.Column="0" Margin="10,10,7,11" x:Name="btnClockIn"  Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                </StackPanel>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="139"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="125"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="0" Margin="10,10,7,11" x:Name="btnClockIn"  Style="{StaticResource MaterialDesignRaisedAccentButton}"
     ToolTip="Clock in to start timer."  Visibility="{Binding IsClockIn, Converter={StaticResource Converter},  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="Auto">
-                    Clock In
-                </Button>
+                        Clock In
+                    </Button>
                     <Button Grid.Column="0" Margin="10,10,7,11" x:Name="btnClockOut"
     Style="{StaticResource MaterialDesignRaisedAccentButton}" 
     ToolTip="Clock Out to stop timer." Visibility="{Binding IsClockOut, Converter={StaticResource Converter }, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="Auto"  >
@@ -62,21 +62,20 @@
                     <Button Grid.Column="1" IsEnabled="False" Margin="10,10,0,11"
     Style="{StaticResource MaterialDesignRaisedAccentButton}"
     ToolTip="Resource name: MaterialDesignRaisedAccentButton" Height="Auto" x:Name="btnTakeBreak">
-                    Take a Break
-                </Button>
-                <StackPanel Grid.Column="2"  Margin="15,10,15,18" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="92">
-                    <TextBlock FontSize="12" FontWeight="Bold" Opacity="0.625">Break Time Left</TextBlock>
-                    <TextBlock x:Name="lblbreaktimespan" FontWeight="Bold"> 00:00:00
-                    </TextBlock>
-                </StackPanel>
+                        Take a Break
+                    </Button>
+                    <StackPanel Grid.Column="2"  Margin="15,10,15,18" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="32" Width="92">
+                        <TextBlock FontSize="12" FontWeight="Bold" Opacity="0.625">Break Time Left</TextBlock>
+                        <TextBlock x:Name="lblbreaktimespan" FontWeight="Bold"> 00:00:00
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
             </Grid>
-        </Grid>
-        <materialDesign:Card.RenderTransform>
+            <materialDesign:Card.RenderTransform>
                 <TranslateTransform />
             </materialDesign:Card.RenderTransform>
         </materialDesign:Card>
         <DockPanel LastChildFill = "True" Grid.Row="1">
-
             <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
                 <Label Content="Today" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" FontWeight="Bold" Foreground="Gray" FontSize="12"/>
                 <ItemsControl x:Name="People">
@@ -120,5 +119,4 @@
             </StackPanel>
         </DockPanel>
     </Grid>
-
 </UserControl>
