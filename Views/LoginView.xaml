@@ -126,14 +126,14 @@
                     <Label Content="Enter your details below" HorizontalAlignment="Center" VerticalAlignment="Top"  Foreground="Gray" FontSize="15"/>
                     <Grid VerticalAlignment="Bottom" Margin="15,45">
                         <Label Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top"   Foreground="Gray" FontWeight="Medium"  FontSize="12"/>
-                        <TextBox  Margin="0,20" x:Name="Email"   FontFamily="Champagne &amp; Limousines" FontSize="18">
+                        <TextBox  Margin="0,20" x:Name="Email" MaxLength="25"   FontFamily="Champagne &amp; Limousines" FontSize="18">
                            
                         </TextBox>
 
                     </Grid>
                     <Grid VerticalAlignment="Center" Margin="15,0">
                         <Label Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top"    Foreground="Gray" FontWeight="Medium"  FontSize="12"/>
-                        <PasswordBox Margin="0,20"  FontFamily="Champagne &amp; Limousines" FontSize="18" cal:Message.Attach="[Event PasswordChanged] = [Action PasswordChanged($source)]"
+                        <PasswordBox Margin="0,20"  FontFamily="Champagne &amp; Limousines" MaxLength="25"  FontSize="18" cal:Message.Attach="[Event PasswordChanged] = [Action PasswordChanged($source)]"
 				         properties:PasswordHelper.Attach="True" />
                         <!--<Label Content="Forgot Password?" HorizontalAlignment="Right"  VerticalAlignment="Bottom"     Foreground="Gray" FontWeight="Medium"  FontSize="10"/>-->
                     </Grid>

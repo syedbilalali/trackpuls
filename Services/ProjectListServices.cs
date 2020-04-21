@@ -29,20 +29,15 @@ namespace trackpuls.Services
 
                     client.BaseAddress = new Uri("http://trackpuls.younggeeks.net/");
 
-                    //Set Content Type If Needed
-                    //client.DefaultRequestHeaders.Accept.Clear();
-                    //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
                     //Set API Timeout 
                     client.Timeout = TimeSpan.FromSeconds(Convert.ToDouble(1000000));
-
                     // Initialization.
                     HttpResponseMessage response = new HttpResponseMessage();
 
                     //Setting Parameter
                     var content = new FormUrlEncodedContent(new[]
                     {
-                             new KeyValuePair<string, string>("user_id", userid)
+                         new KeyValuePair<string, string>("user_id", userid)
                     });
                     //HTTP POST
                     response = await client.PostAsync("api/ApiProjectController/showapiproject", content).ConfigureAwait(false);
@@ -50,7 +45,6 @@ namespace trackpuls.Services
                     {
                         // Reading Response.
                         string result = response.Content.ReadAsStringAsync().Result;
-                        //System.Windows.MessageBox.Show(result);
                         resp = JsonConvert.DeserializeObject<Projects>(result);
                         // Releasing.
                         response.Dispose();

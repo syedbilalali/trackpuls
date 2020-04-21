@@ -41,30 +41,29 @@
     </UserControl.Resources>
     <Grid Grid.Row="3" Height="auto" Width="auto">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="1" Margin="10" BorderBrush="#f0f0f0" CornerRadius="5">
+        <Border BorderThickness="1" Visibility="Hidden" Margin="10" BorderBrush="#f0f0f0" CornerRadius="5">
             <!--<TextBlock 
             Background="#f0f0f0" Foreground="#8995a5"  RenderTransformOrigin="0.5,0.5">
           Search Projects</TextBlock>-->
-            <TextBox AcceptsReturn="True" TextWrapping="Wrap"  Text="Search" />
+            <TextBox AcceptsReturn="True" Visibility="Hidden" TextWrapping="Wrap"  Text="Search" />
         </Border>
         <DockPanel LastChildFill = "True" Grid.Row="1">
             <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" >
                 <Label Content="Assigned Projects" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8" FontWeight="Bold" Foreground="Gray" FontSize="11"/>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True">
-                    <StackPanel DockPanel.Dock="Top"  Orientation="Vertical" Height="440">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Height="440">
                         <ItemsControl x:Name="ProjectList">
                             <ItemsControl.ItemContainerStyle>
-                                <Style TargetType="ContentPresenter">
-                                </Style>
+                                <Style TargetType="ContentPresenter"></Style>
                             </ItemsControl.ItemContainerStyle>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
                                         <materialDesign:Card Padding="15" Margin="10, 2,10,2" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue" 
-                         UniformCornerRadius="2"  Width="360">
+                                            UniformCornerRadius="2"  Width="360">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="7*"/>

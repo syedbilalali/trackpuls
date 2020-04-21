@@ -28,9 +28,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ProductName>Trackpuls</ProductName>
+    <PublisherName>Younggeeks Technologies</PublisherName>
+    <SuiteName>Trackpuls Offline</SuiteName>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -66,7 +70,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -135,18 +139,27 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AttachedProperties\PasswordBoxHelper.cs" />
-    <Compile Include="DAL\ConnectionString.cs" />
-    <Compile Include="DAL\DataAdapter.cs" />
+    <Compile Include="Helper\AllInputSources.cs" />
+    <Compile Include="Helper\AutoLogOffHelper.cs" />
+    <Compile Include="Helper\KeyboardInput.cs" />
+    <Compile Include="Helper\MouseInput.cs" />
+    <Compile Include="Helper\OpenWindowGetter.cs" />
+    <Compile Include="Helper\WindowsHookHelper.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="Models\AttendenceData.cs" />
     <Compile Include="Models\AttendenceResp.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\LoginResp.cs" />
+    <Compile Include="Models\ProcessInfo.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Projects.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="Models\ScreenResp.cs" />
+    <Compile Include="Models\SettingResp.cs" />
+    <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Timeslab.cs" />
     <Compile Include="Models\UserData.cs" />
+    <Compile Include="Services\AppWebServices.cs" />
     <Compile Include="Services\AttendenceService.cs" />
     <Compile Include="Services\LoginService.cs" />
     <Compile Include="Services\ProjectListServices.cs" />

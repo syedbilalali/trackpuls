@@ -51,7 +51,6 @@ namespace trackpuls.ViewModels
 
                 if (data.email != null && data.password != null)
                 {
-                    System.Windows.MessageBox.Show("Properties : " + data.email + " Password " + data.password);
                     Email = data.email;
                     Password = data.password;
                 }
@@ -116,7 +115,6 @@ namespace trackpuls.ViewModels
                     LoginResp resp = await LoginService.p_Login(Email, Password);
                     if (resp.status == "true")
                     {    
-                        //System.Windows.MessageBox.Show();
                         conductor.ActivateItem(new TrackMainViewModel(this.parent));
                         var parent = this.parent as MainViewModel;
                         parent.showMessage(" Login Sucessfully... " + resp.data[0].email);
@@ -133,7 +131,6 @@ namespace trackpuls.ViewModels
                 {
                     var parent = this.parent as MainViewModel;
                     parent.showMessage(ex.Message);
-                    System.Windows.MessageBox.Show("Error : " + ex.Message);
                 }
             }   
         }
@@ -147,6 +144,8 @@ namespace trackpuls.ViewModels
         {
             get { return !HasErrorsByGroup(); }
         }
+
+
         #endregion
     }
 }

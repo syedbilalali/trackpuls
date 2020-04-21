@@ -16,36 +16,36 @@ namespace trackpuls.ViewModels
         private Screen attendence;
         private Screen timetrack;
         public TrackMainViewModel(IConductor parent) {
+
             this.parent = parent;
             showProf();
-            attendence = new AttendanceViewModel();
+            attendence = new AttendanceViewModel(this.parent);
             ActivateItem(attendence);
         }
         private void showProf() {
+
             var parent = this.parent as MainViewModel;
             parent.IsProfilePic = true;
         }
         public void btnAttendanceTrack() {
 
-            //System.Windows.MessageBox.Show(" Attendane Track View ");
             if (attendence != null)
             {
                 ActivateItem(this.attendence);
             }
             else {
-                attendence = new AttendanceViewModel();
+                attendence = new AttendanceViewModel(this.parent);
                 ActivateItem(attendence);
             }
             
         }
         public void btnTimeTrack() {
 
-            //System.Windows.MessageBox.Show(" Time Track ");
             if (timetrack != null) {
                 ActivateItem(this.timetrack);
             }
             else {
-                timetrack = new TimeTrackViewModel();
+                timetrack = new TimeTrackViewModel(this.parent);
                 ActivateItem(timetrack);
             }
             

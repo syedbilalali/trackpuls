@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="16.7" version="16.7" Modules="enterprise" RootPath="." Language="en" Id="{C6FE3570-EBF3-434C-9A8A-938DA515CE36}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="16.7" version="16.9" Modules="enterprise" RootPath="." Language="en" Id="{C6FE3570-EBF3-434C-9A8A-938DA515CE36}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;SccmComponent;ActSyncAppComponent;FixupComponent"/>
+    <ROW Name="HiddenItems" Value="AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPNOREPAIR" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="ARPPRODUCTICON" Value="tp_ic.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="Younggeeks Technologies"/>
     <ROW Property="ProductCode" Value="1033:{53897C70-CC2A-4205-8E43-A2174774971E} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Trackpuls"/>
     <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
-    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{D913AE29-1CF1-41A0-A8C9-DB55EFF2724A}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -26,6 +28,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
     <ROW Directory="app.publish_Dir" Directory_Parent="trackpuls_Dir" DefaultDir="APP~1.PUB|app.publish"/>
@@ -35,108 +38,101 @@
     <ROW Directory="x86_Dir" Directory_Parent="trackpuls_Dir" DefaultDir="x86"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_ExePath" ComponentId="{BB8AF85B-AB9B-4AD5-AA8E-742BD8A0ACE7}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{9754E42F-10D0-462B-BE0F-B80EB77D0B40}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="Caliburn.Micro.Platform.Core.dll" ComponentId="{03F9216F-A0D9-4EE1-96AB-27981BE7DA39}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="Caliburn.Micro.Platform.Core.dll"/>
-    <ROW Component="Caliburn.Micro.Platform.dll" ComponentId="{12E1F225-A028-470A-B8AA-62AAFF52DEB9}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="Caliburn.Micro.Platform.dll"/>
-    <ROW Component="Caliburn.Micro.dll" ComponentId="{C178D766-6D94-4D31-AD63-B9F713051B3C}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="Caliburn.Micro.dll"/>
-    <ROW Component="Caliburn.Micro.dll.deploy" ComponentId="{C392CE12-FB5B-4DCC-868A-58C69F89DDF7}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="trackpuls.application_1" Type="0"/>
-    <ROW Component="Capture_1015050002.jpg" ComponentId="{BC182164-D0CF-4439-BB86-DF000B743B66}" Directory_="shots_Dir" Attributes="0" KeyPath="Capture_1015050002.jpg" Type="0"/>
-    <ROW Component="EntityFramework.SqlServer.dll" ComponentId="{4BBCD877-286B-4E4B-B853-4C1EDEE9B761}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="EntityFramework.SqlServer.dll"/>
-    <ROW Component="EntityFramework.dll" ComponentId="{EB895AA1-3085-46CA-8852-BE8B56F15B71}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="EntityFramework.dll"/>
-    <ROW Component="MaterialDesignColors.dll" ComponentId="{4B9C62CF-8751-49AF-820A-2FDEB593CF17}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="MaterialDesignColors.dll"/>
-    <ROW Component="MaterialDesignThemes.Wpf.dll" ComponentId="{02EFCB32-E9AB-4BF0-B0E2-E6D5B512245D}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="MaterialDesignThemes.Wpf.dll"/>
-    <ROW Component="Newtonsoft.Json.dll" ComponentId="{BF9DADFD-7DC3-4F65-9249-245F37F3C1FA}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="Caliburn.Micro.Platform.Core.dll" ComponentId="{975EFC4B-91BD-443C-85F3-241DAAE39AD9}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="Caliburn.Micro.Platform.Core.dll"/>
+    <ROW Component="Caliburn.Micro.Platform.Core.xml" ComponentId="{E6934446-60AF-45AE-B30B-C1F375AC7D49}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="Caliburn.Micro.Platform.Core.xml" Type="0"/>
+    <ROW Component="Caliburn.Micro.Platform.dll" ComponentId="{EC2E2E91-005F-45BE-A7C5-4F3AEAB63844}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="Caliburn.Micro.Platform.dll"/>
+    <ROW Component="Caliburn.Micro.dll" ComponentId="{BFF60889-B08B-4308-B7E3-EA0542875A9E}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="Caliburn.Micro.dll"/>
+    <ROW Component="Capture_1024961158.jpg" ComponentId="{AA2F5D3B-23EE-436A-A18A-FEADBF7B7A06}" Directory_="shots_Dir" Attributes="0" KeyPath="Capture_1024961158.jpg" Type="0"/>
+    <ROW Component="EntityFramework.SqlServer.dll" ComponentId="{C7FE6EA1-6333-405F-984D-1E4DB68B9F53}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="EntityFramework.SqlServer.dll"/>
+    <ROW Component="EntityFramework.dll" ComponentId="{9D52FB80-B523-44CE-8172-79F49B441D0B}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="EntityFramework.dll"/>
+    <ROW Component="MaterialDesignColors.dll" ComponentId="{2E5B3952-B5EB-4541-9D6A-F1D205B785E7}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="MaterialDesignColors.dll"/>
+    <ROW Component="MaterialDesignThemes.Wpf.dll" ComponentId="{138F3CCE-31F8-4387-AB89-A1362A15A4CF}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="MaterialDesignThemes.Wpf.dll"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{D73A5D9D-6CB0-42C2-88D4-BAC898541705}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="ProductInformation" ComponentId="{F7D90C94-B7E3-45FE-8C7B-6FE119EE6278}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{462BAAAA-B830-4AF7-AC85-96BE6A44A0D6}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="SQLite.Interop.dll" ComponentId="{529CB3BA-3C0F-476F-87C1-A2A682B00A8D}" Directory_="x64_Dir" Attributes="256" KeyPath="SQLite.Interop.dll"/>
-    <ROW Component="SQLite.Interop.dll_1" ComponentId="{E78845FE-C09B-4F09-B54C-243EBC377FBB}" Directory_="x86_Dir" Attributes="0" KeyPath="SQLite.Interop.dll_1"/>
-    <ROW Component="System.Data.SQLite.EF6.dll" ComponentId="{F0012228-5AEF-4A36-A8CA-4AE6B4032942}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="System.Data.SQLite.EF6.dll"/>
-    <ROW Component="System.Data.SQLite.Linq.dll" ComponentId="{6C68E220-8649-416F-9B03-97D1631D504A}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="System.Data.SQLite.Linq.dll"/>
-    <ROW Component="System.Data.SQLite.dll" ComponentId="{21AF9ADF-B0E0-4856-8245-E2DFE934D667}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="System.Data.SQLite.dll"/>
-    <ROW Component="System.Windows.Interactivity.dll" ComponentId="{B2A1330D-8B11-4C2B-9B2D-A1DE729E3BE7}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="System.Windows.Interactivity.dll"/>
-    <ROW Component="trackpuls.exe" ComponentId="{B7966B3B-5872-4866-A688-BFC570AD01F8}" Directory_="app.publish_Dir" Attributes="0" KeyPath="trackpuls.exe"/>
-    <ROW Component="trackpuls.exe_1" ComponentId="{2533F635-BC3E-4B4C-8BBB-5EA56A4689FF}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="trackpuls.exe_1"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{0E03EE89-F4BB-47A8-A8A4-377F9323237A}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="SQLite.Interop.dll" ComponentId="{0261C345-5FFC-4065-9A18-BE3786B0FFD4}" Directory_="x64_Dir" Attributes="256" KeyPath="SQLite.Interop.dll"/>
+    <ROW Component="SQLite.Interop.dll_1" ComponentId="{94A13E28-B16D-4F66-A4B0-6C9F777CC6EF}" Directory_="x86_Dir" Attributes="0" KeyPath="SQLite.Interop.dll_1"/>
+    <ROW Component="System.Data.SQLite.EF6.dll" ComponentId="{4AAD8C0E-107D-4914-A639-604155281252}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="System.Data.SQLite.EF6.dll"/>
+    <ROW Component="System.Data.SQLite.Linq.dll" ComponentId="{388874BA-0631-4EFC-82BD-FFD424D429A6}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="System.Data.SQLite.Linq.dll"/>
+    <ROW Component="System.Data.SQLite.dll" ComponentId="{2CFDD30D-9F60-44E2-86CE-722AA868CDAC}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="System.Data.SQLite.dll"/>
+    <ROW Component="System.Windows.Interactivity.dll" ComponentId="{B02865FF-57E1-4F35-8444-DFC3FAD3EDAD}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="System.Windows.Interactivity.dll"/>
+    <ROW Component="trackpuls.exe" ComponentId="{95EA50E3-30A3-4E49-87D8-9907C765100D}" Directory_="app.publish_Dir" Attributes="0" KeyPath="trackpuls.exe"/>
+    <ROW Component="trackpuls.exe_1" ComponentId="{FF1E1DFA-14FF-4C00-A2E6-8202D6340C0B}" Directory_="trackpuls_Dir" Attributes="0" KeyPath="trackpuls.exe_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="trackpuls.application_1" Component_="Caliburn.Micro.dll.deploy" FileName="TRACKP~1.APP|trackpuls.application" Attributes="0" SourcePath="..\bin\Release\trackpuls.application" SelfReg="false"/>
-    <ROW File="trackpuls.exe.manifest" Component_="Caliburn.Micro.dll.deploy" FileName="TRACKP~1.MAN|trackpuls.exe.manifest" Attributes="0" SourcePath="..\bin\Release\trackpuls.exe.manifest" SelfReg="false"/>
-    <ROW File="trackpuls.exe" Component_="trackpuls.exe" FileName="TRACKP~1.EXE|trackpuls.exe" Attributes="0" SourcePath="..\bin\Release\app.publish\trackpuls.exe" SelfReg="false"/>
+    <ROW File="trackpuls.exe" Component_="trackpuls.exe" FileName="TRACKP~1.EXE|trackpuls.exe" Attributes="0" SourcePath="..\bin\Release\app.publish\trackpuls.exe" SelfReg="false" DigSign="true"/>
     <ROW File="Caliburn.Micro.dll" Component_="Caliburn.Micro.dll" FileName="CALIBU~1.DLL|Caliburn.Micro.dll" Attributes="0" SourcePath="..\bin\Release\Caliburn.Micro.dll" SelfReg="false"/>
     <ROW File="Caliburn.Micro.Platform.Core.dll" Component_="Caliburn.Micro.Platform.Core.dll" FileName="CALIBU~2.DLL|Caliburn.Micro.Platform.Core.dll" Attributes="0" SourcePath="..\bin\Release\Caliburn.Micro.Platform.Core.dll" SelfReg="false"/>
-    <ROW File="Caliburn.Micro.Platform.Core.xml" Component_="Caliburn.Micro.dll.deploy" FileName="CALIBU~1.XML|Caliburn.Micro.Platform.Core.xml" Attributes="0" SourcePath="..\bin\Release\Caliburn.Micro.Platform.Core.xml" SelfReg="false"/>
+    <ROW File="Caliburn.Micro.Platform.Core.xml" Component_="Caliburn.Micro.Platform.Core.xml" FileName="CALIBU~1.XML|Caliburn.Micro.Platform.Core.xml" Attributes="0" SourcePath="..\bin\Release\Caliburn.Micro.Platform.Core.xml" SelfReg="false"/>
     <ROW File="Caliburn.Micro.Platform.dll" Component_="Caliburn.Micro.Platform.dll" FileName="CALIBU~3.DLL|Caliburn.Micro.Platform.dll" Attributes="0" SourcePath="..\bin\Release\Caliburn.Micro.Platform.dll" SelfReg="false"/>
-    <ROW File="Caliburn.Micro.Platform.xml" Component_="Caliburn.Micro.dll.deploy" FileName="CALIBU~2.XML|Caliburn.Micro.Platform.xml" Attributes="0" SourcePath="..\bin\Release\Caliburn.Micro.Platform.xml" SelfReg="false"/>
-    <ROW File="Caliburn.Micro.xml" Component_="Caliburn.Micro.dll.deploy" FileName="CALIBU~3.XML|Caliburn.Micro.xml" Attributes="0" SourcePath="..\bin\Release\Caliburn.Micro.xml" SelfReg="false"/>
+    <ROW File="Caliburn.Micro.Platform.xml" Component_="Caliburn.Micro.Platform.Core.xml" FileName="CALIBU~2.XML|Caliburn.Micro.Platform.xml" Attributes="0" SourcePath="..\bin\Release\Caliburn.Micro.Platform.xml" SelfReg="false"/>
+    <ROW File="Caliburn.Micro.xml" Component_="Caliburn.Micro.Platform.Core.xml" FileName="CALIBU~3.XML|Caliburn.Micro.xml" Attributes="0" SourcePath="..\bin\Release\Caliburn.Micro.xml" SelfReg="false"/>
     <ROW File="EntityFramework.dll" Component_="EntityFramework.dll" FileName="ENTITY~1.DLL|EntityFramework.dll" Attributes="0" SourcePath="..\bin\Release\EntityFramework.dll" SelfReg="false"/>
     <ROW File="EntityFramework.SqlServer.dll" Component_="EntityFramework.SqlServer.dll" FileName="ENTITY~2.DLL|EntityFramework.SqlServer.dll" Attributes="0" SourcePath="..\bin\Release\EntityFramework.SqlServer.dll" SelfReg="false"/>
-    <ROW File="EntityFramework.SqlServer.xml" Component_="Caliburn.Micro.dll.deploy" FileName="ENTITY~1.XML|EntityFramework.SqlServer.xml" Attributes="0" SourcePath="..\bin\Release\EntityFramework.SqlServer.xml" SelfReg="false"/>
-    <ROW File="EntityFramework.xml" Component_="Caliburn.Micro.dll.deploy" FileName="ENTITY~2.XML|EntityFramework.xml" Attributes="0" SourcePath="..\bin\Release\EntityFramework.xml" SelfReg="false"/>
+    <ROW File="EntityFramework.SqlServer.xml" Component_="Caliburn.Micro.Platform.Core.xml" FileName="ENTITY~1.XML|EntityFramework.SqlServer.xml" Attributes="0" SourcePath="..\bin\Release\EntityFramework.SqlServer.xml" SelfReg="false"/>
+    <ROW File="EntityFramework.xml" Component_="Caliburn.Micro.Platform.Core.xml" FileName="ENTITY~2.XML|EntityFramework.xml" Attributes="0" SourcePath="..\bin\Release\EntityFramework.xml" SelfReg="false"/>
     <ROW File="MaterialDesignColors.dll" Component_="MaterialDesignColors.dll" FileName="MATERI~1.DLL|MaterialDesignColors.dll" Attributes="0" SourcePath="..\bin\Release\MaterialDesignColors.dll" SelfReg="false"/>
     <ROW File="MaterialDesignColors.pdb" Component_="MaterialDesignColors.dll" FileName="MATERI~1.PDB|MaterialDesignColors.pdb" Attributes="0" SourcePath="..\bin\Release\MaterialDesignColors.pdb" SelfReg="false"/>
     <ROW File="MaterialDesignThemes.Wpf.dll" Component_="MaterialDesignThemes.Wpf.dll" FileName="MATERI~2.DLL|MaterialDesignThemes.Wpf.dll" Attributes="0" SourcePath="..\bin\Release\MaterialDesignThemes.Wpf.dll" SelfReg="false"/>
     <ROW File="MaterialDesignThemes.Wpf.pdb" Component_="MaterialDesignThemes.Wpf.dll" FileName="MATERI~2.PDB|MaterialDesignThemes.Wpf.pdb" Attributes="0" SourcePath="..\bin\Release\MaterialDesignThemes.Wpf.pdb" SelfReg="false"/>
-    <ROW File="MaterialDesignThemes.Wpf.xml" Component_="Caliburn.Micro.dll.deploy" FileName="MATERI~1.XML|MaterialDesignThemes.Wpf.xml" Attributes="0" SourcePath="..\bin\Release\MaterialDesignThemes.Wpf.xml" SelfReg="false"/>
+    <ROW File="MaterialDesignThemes.Wpf.xml" Component_="Caliburn.Micro.Platform.Core.xml" FileName="MATERI~1.XML|MaterialDesignThemes.Wpf.xml" Attributes="0" SourcePath="..\bin\Release\MaterialDesignThemes.Wpf.xml" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\bin\Release\Newtonsoft.Json.dll" SelfReg="false"/>
-    <ROW File="Newtonsoft.Json.xml" Component_="Caliburn.Micro.dll.deploy" FileName="NEWTON~1.XML|Newtonsoft.Json.xml" Attributes="0" SourcePath="..\bin\Release\Newtonsoft.Json.xml" SelfReg="false"/>
-    <ROW File="Capture_1015050002.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTUR~1.JPG|Capture_1015050002.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1015050002.jpg" SelfReg="false"/>
-    <ROW File="Capture_1018415525.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTUR~2.JPG|Capture_1018415525.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1018415525.jpg" SelfReg="false"/>
-    <ROW File="Capture_1043313678.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTUR~3.JPG|Capture_1043313678.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1043313678.jpg" SelfReg="false"/>
-    <ROW File="Capture_112188664.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTUR~4.JPG|Capture_112188664.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_112188664.jpg" SelfReg="false"/>
-    <ROW File="Capture_1159462583.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTUR~5.JPG|Capture_1159462583.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1159462583.jpg" SelfReg="false"/>
-    <ROW File="Capture_1161194292.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTUR~6.JPG|Capture_1161194292.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1161194292.jpg" SelfReg="false"/>
-    <ROW File="Capture_1226775191.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTUR~7.JPG|Capture_1226775191.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1226775191.jpg" SelfReg="false"/>
-    <ROW File="Capture_12587310.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTUR~8.JPG|Capture_12587310.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_12587310.jpg" SelfReg="false"/>
-    <ROW File="Capture_1354137939.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTUR~9.JPG|Capture_1354137939.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1354137939.jpg" SelfReg="false"/>
-    <ROW File="Capture_141058443.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~10.JPG|Capture_141058443.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_141058443.jpg" SelfReg="false"/>
-    <ROW File="Capture_1459594769.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~11.JPG|Capture_1459594769.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1459594769.jpg" SelfReg="false"/>
-    <ROW File="Capture_1483753968.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~12.JPG|Capture_1483753968.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1483753968.jpg" SelfReg="false"/>
-    <ROW File="Capture_1488728395.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~13.JPG|Capture_1488728395.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1488728395.jpg" SelfReg="false"/>
-    <ROW File="Capture_1495120203.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~14.JPG|Capture_1495120203.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1495120203.jpg" SelfReg="false"/>
-    <ROW File="Capture_1502281103.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~15.JPG|Capture_1502281103.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1502281103.jpg" SelfReg="false"/>
-    <ROW File="Capture_1510798184.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~16.JPG|Capture_1510798184.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1510798184.jpg" SelfReg="false"/>
-    <ROW File="Capture_1603657564.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~17.JPG|Capture_1603657564.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1603657564.jpg" SelfReg="false"/>
-    <ROW File="Capture_1632527343.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~18.JPG|Capture_1632527343.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1632527343.jpg" SelfReg="false"/>
-    <ROW File="Capture_169008397.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~19.JPG|Capture_169008397.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_169008397.jpg" SelfReg="false"/>
-    <ROW File="Capture_1728952879.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~20.JPG|Capture_1728952879.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1728952879.jpg" SelfReg="false"/>
-    <ROW File="Capture_1738294828.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~21.JPG|Capture_1738294828.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1738294828.jpg" SelfReg="false"/>
-    <ROW File="Capture_1911360859.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~22.JPG|Capture_1911360859.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1911360859.jpg" SelfReg="false"/>
-    <ROW File="Capture_1950055028.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~23.JPG|Capture_1950055028.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1950055028.jpg" SelfReg="false"/>
-    <ROW File="Capture_1951657400.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~24.JPG|Capture_1951657400.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1951657400.jpg" SelfReg="false"/>
-    <ROW File="Capture_2002277546.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~25.JPG|Capture_2002277546.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_2002277546.jpg" SelfReg="false"/>
-    <ROW File="Capture_2010006826.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~26.JPG|Capture_2010006826.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_2010006826.jpg" SelfReg="false"/>
-    <ROW File="Capture_2082273163.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~27.JPG|Capture_2082273163.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_2082273163.jpg" SelfReg="false"/>
-    <ROW File="Capture_2146272835.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~28.JPG|Capture_2146272835.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_2146272835.jpg" SelfReg="false"/>
-    <ROW File="Capture_320552346.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~29.JPG|Capture_320552346.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_320552346.jpg" SelfReg="false"/>
-    <ROW File="Capture_322443530.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~30.JPG|Capture_322443530.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_322443530.jpg" SelfReg="false"/>
-    <ROW File="Capture_359158060.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~31.JPG|Capture_359158060.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_359158060.jpg" SelfReg="false"/>
-    <ROW File="Capture_371434429.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~32.JPG|Capture_371434429.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_371434429.jpg" SelfReg="false"/>
-    <ROW File="Capture_401373211.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~33.JPG|Capture_401373211.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_401373211.jpg" SelfReg="false"/>
-    <ROW File="Capture_404024745.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~34.JPG|Capture_404024745.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_404024745.jpg" SelfReg="false"/>
-    <ROW File="Capture_518537926.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~35.JPG|Capture_518537926.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_518537926.jpg" SelfReg="false"/>
-    <ROW File="Capture_528281195.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~36.JPG|Capture_528281195.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_528281195.jpg" SelfReg="false"/>
-    <ROW File="Capture_535903140.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~37.JPG|Capture_535903140.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_535903140.jpg" SelfReg="false"/>
-    <ROW File="Capture_539571537.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~38.JPG|Capture_539571537.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_539571537.jpg" SelfReg="false"/>
-    <ROW File="Capture_550559256.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~39.JPG|Capture_550559256.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_550559256.jpg" SelfReg="false"/>
-    <ROW File="Capture_556763465.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~40.JPG|Capture_556763465.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_556763465.jpg" SelfReg="false"/>
-    <ROW File="Capture_625195202.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~41.JPG|Capture_625195202.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_625195202.jpg" SelfReg="false"/>
-    <ROW File="Capture_650750386.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~42.JPG|Capture_650750386.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_650750386.jpg" SelfReg="false"/>
-    <ROW File="Capture_681136849.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~43.JPG|Capture_681136849.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_681136849.jpg" SelfReg="false"/>
-    <ROW File="Capture_862053912.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~44.JPG|Capture_862053912.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_862053912.jpg" SelfReg="false"/>
-    <ROW File="Capture_913375155.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~45.JPG|Capture_913375155.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_913375155.jpg" SelfReg="false"/>
-    <ROW File="Capture_976512596.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~46.JPG|Capture_976512596.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_976512596.jpg" SelfReg="false"/>
-    <ROW File="Capture_981228111.jpg" Component_="Capture_1015050002.jpg" FileName="CAPTU~47.JPG|Capture_981228111.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_981228111.jpg" SelfReg="false"/>
+    <ROW File="Newtonsoft.Json.xml" Component_="Caliburn.Micro.Platform.Core.xml" FileName="NEWTON~1.XML|Newtonsoft.Json.xml" Attributes="0" SourcePath="..\bin\Release\Newtonsoft.Json.xml" SelfReg="false"/>
+    <ROW File="Capture_1024961158.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTUR~1.JPG|Capture_1024961158.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1024961158.jpg" SelfReg="false"/>
+    <ROW File="Capture_108931303.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTUR~2.JPG|Capture_108931303.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_108931303.jpg" SelfReg="false"/>
+    <ROW File="Capture_1099360144.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTUR~3.JPG|Capture_1099360144.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1099360144.jpg" SelfReg="false"/>
+    <ROW File="Capture_1234914809.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTUR~4.JPG|Capture_1234914809.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1234914809.jpg" SelfReg="false"/>
+    <ROW File="Capture_1289786437.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTUR~5.JPG|Capture_1289786437.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1289786437.jpg" SelfReg="false"/>
+    <ROW File="Capture_1293782936.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTUR~6.JPG|Capture_1293782936.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1293782936.jpg" SelfReg="false"/>
+    <ROW File="Capture_1351758217.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTUR~7.JPG|Capture_1351758217.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1351758217.jpg" SelfReg="false"/>
+    <ROW File="Capture_1373207302.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTUR~8.JPG|Capture_1373207302.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1373207302.jpg" SelfReg="false"/>
+    <ROW File="Capture_1455719220.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTUR~9.JPG|Capture_1455719220.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1455719220.jpg" SelfReg="false"/>
+    <ROW File="Capture_1460225874.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~10.JPG|Capture_1460225874.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1460225874.jpg" SelfReg="false"/>
+    <ROW File="Capture_1508653199.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~11.JPG|Capture_1508653199.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1508653199.jpg" SelfReg="false"/>
+    <ROW File="Capture_1524667130.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~12.JPG|Capture_1524667130.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1524667130.jpg" SelfReg="false"/>
+    <ROW File="Capture_1566680553.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~13.JPG|Capture_1566680553.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1566680553.jpg" SelfReg="false"/>
+    <ROW File="Capture_1593270586.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~14.JPG|Capture_1593270586.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1593270586.jpg" SelfReg="false"/>
+    <ROW File="Capture_1636351763.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~15.JPG|Capture_1636351763.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1636351763.jpg" SelfReg="false"/>
+    <ROW File="Capture_1748149448.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~16.JPG|Capture_1748149448.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1748149448.jpg" SelfReg="false"/>
+    <ROW File="Capture_177497868.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~17.JPG|Capture_177497868.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_177497868.jpg" SelfReg="false"/>
+    <ROW File="Capture_1787337959.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~18.JPG|Capture_1787337959.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1787337959.jpg" SelfReg="false"/>
+    <ROW File="Capture_1795505701.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~19.JPG|Capture_1795505701.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1795505701.jpg" SelfReg="false"/>
+    <ROW File="Capture_1835066832.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~20.JPG|Capture_1835066832.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1835066832.jpg" SelfReg="false"/>
+    <ROW File="Capture_1898483707.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~21.JPG|Capture_1898483707.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1898483707.jpg" SelfReg="false"/>
+    <ROW File="Capture_1921084734.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~22.JPG|Capture_1921084734.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1921084734.jpg" SelfReg="false"/>
+    <ROW File="Capture_1942823078.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~23.JPG|Capture_1942823078.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1942823078.jpg" SelfReg="false"/>
+    <ROW File="Capture_1966862184.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~24.JPG|Capture_1966862184.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_1966862184.jpg" SelfReg="false"/>
+    <ROW File="Capture_2113427978.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~25.JPG|Capture_2113427978.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_2113427978.jpg" SelfReg="false"/>
+    <ROW File="Capture_2143697035.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~26.JPG|Capture_2143697035.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_2143697035.jpg" SelfReg="false"/>
+    <ROW File="Capture_281552683.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~27.JPG|Capture_281552683.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_281552683.jpg" SelfReg="false"/>
+    <ROW File="Capture_339206774.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~28.JPG|Capture_339206774.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_339206774.jpg" SelfReg="false"/>
+    <ROW File="Capture_379080574.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~29.JPG|Capture_379080574.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_379080574.jpg" SelfReg="false"/>
+    <ROW File="Capture_476394426.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~30.JPG|Capture_476394426.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_476394426.jpg" SelfReg="false"/>
+    <ROW File="Capture_502855189.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~31.JPG|Capture_502855189.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_502855189.jpg" SelfReg="false"/>
+    <ROW File="Capture_530438963.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~32.JPG|Capture_530438963.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_530438963.jpg" SelfReg="false"/>
+    <ROW File="Capture_55358396.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~33.JPG|Capture_55358396.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_55358396.jpg" SelfReg="false"/>
+    <ROW File="Capture_593769385.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~34.JPG|Capture_593769385.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_593769385.jpg" SelfReg="false"/>
+    <ROW File="Capture_65161298.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~35.JPG|Capture_65161298.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_65161298.jpg" SelfReg="false"/>
+    <ROW File="Capture_672589178.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~36.JPG|Capture_672589178.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_672589178.jpg" SelfReg="false"/>
+    <ROW File="Capture_679204018.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~37.JPG|Capture_679204018.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_679204018.jpg" SelfReg="false"/>
+    <ROW File="Capture_848291340.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~38.JPG|Capture_848291340.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_848291340.jpg" SelfReg="false"/>
+    <ROW File="Capture_992091115.jpg" Component_="Capture_1024961158.jpg" FileName="CAPTU~39.JPG|Capture_992091115.jpg" Attributes="0" SourcePath="..\bin\Release\shots\Capture_992091115.jpg" SelfReg="false"/>
     <ROW File="System.Data.SQLite.dll" Component_="System.Data.SQLite.dll" FileName="SYSTEM~1.DLL|System.Data.SQLite.dll" Attributes="0" SourcePath="..\bin\Release\System.Data.SQLite.dll" SelfReg="false"/>
-    <ROW File="System.Data.SQLite.dll.config" Component_="Caliburn.Micro.dll.deploy" FileName="SYSTEM~1.CON|System.Data.SQLite.dll.config" Attributes="0" SourcePath="..\bin\Release\System.Data.SQLite.dll.config" SelfReg="false"/>
+    <ROW File="System.Data.SQLite.dll.config" Component_="Caliburn.Micro.Platform.Core.xml" FileName="SYSTEM~1.CON|System.Data.SQLite.dll.config" Attributes="0" SourcePath="..\bin\Release\System.Data.SQLite.dll.config" SelfReg="false"/>
     <ROW File="System.Data.SQLite.EF6.dll" Component_="System.Data.SQLite.EF6.dll" FileName="SYSTEM~2.DLL|System.Data.SQLite.EF6.dll" Attributes="0" SourcePath="..\bin\Release\System.Data.SQLite.EF6.dll" SelfReg="false"/>
     <ROW File="System.Data.SQLite.Linq.dll" Component_="System.Data.SQLite.Linq.dll" FileName="SYSTEM~3.DLL|System.Data.SQLite.Linq.dll" Attributes="0" SourcePath="..\bin\Release\System.Data.SQLite.Linq.dll" SelfReg="false"/>
-    <ROW File="System.Data.SQLite.xml" Component_="Caliburn.Micro.dll.deploy" FileName="SYSTEM~1.XML|System.Data.SQLite.xml" Attributes="0" SourcePath="..\bin\Release\System.Data.SQLite.xml" SelfReg="false"/>
+    <ROW File="System.Data.SQLite.xml" Component_="Caliburn.Micro.Platform.Core.xml" FileName="SYSTEM~1.XML|System.Data.SQLite.xml" Attributes="0" SourcePath="..\bin\Release\System.Data.SQLite.xml" SelfReg="false"/>
     <ROW File="System.Windows.Interactivity.dll" Component_="System.Windows.Interactivity.dll" FileName="SYSTEM~4.DLL|System.Windows.Interactivity.dll" Attributes="0" SourcePath="..\bin\Release\System.Windows.Interactivity.dll" SelfReg="false"/>
+    <ROW File="trackpuls.application" Component_="Caliburn.Micro.Platform.Core.xml" FileName="TRACKP~1.APP|trackpuls.application" Attributes="0" SourcePath="..\bin\Release\trackpuls.application" SelfReg="false"/>
     <ROW File="trackpuls.exe_1" Component_="trackpuls.exe_1" FileName="TRACKP~1.EXE|trackpuls.exe" Attributes="0" SourcePath="..\bin\Release\trackpuls.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="trackpuls.exe.config" Component_="Caliburn.Micro.dll.deploy" FileName="TRACKP~1.CON|trackpuls.exe.config" Attributes="0" SourcePath="..\bin\Release\trackpuls.exe.config" SelfReg="false"/>
+    <ROW File="trackpuls.exe.config" Component_="Caliburn.Micro.Platform.Core.xml" FileName="TRACKP~1.CON|trackpuls.exe.config" Attributes="0" SourcePath="..\bin\Release\trackpuls.exe.config" SelfReg="false"/>
+    <ROW File="trackpuls.exe.manifest" Component_="Caliburn.Micro.Platform.Core.xml" FileName="TRACKP~1.MAN|trackpuls.exe.manifest" Attributes="0" SourcePath="..\bin\Release\trackpuls.exe.manifest" SelfReg="false"/>
     <ROW File="trackpuls.pdb" Component_="trackpuls.exe_1" FileName="TRACKP~1.PDB|trackpuls.pdb" Attributes="0" SourcePath="..\bin\Release\trackpuls.pdb" SelfReg="false"/>
     <ROW File="SQLite.Interop.dll" Component_="SQLite.Interop.dll" FileName="SQLITE~1.DLL|SQLite.Interop.dll" Attributes="0" SourcePath="..\bin\Release\x64\SQLite.Interop.dll" SelfReg="false"/>
     <ROW File="SQLite.Interop.dll_1" Component_="SQLite.Interop.dll_1" FileName="SQLITE~1.DLL|SQLite.Interop.dll" Attributes="0" SourcePath="..\bin\Release\x86\SQLite.Interop.dll" SelfReg="false"/>
@@ -145,7 +141,7 @@
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" Languages="en" InstallationType="4" UseLargeSchema="true"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="..\..\..\..\..\Desktop\trackpuls" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="tp_ic.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" UseLargeSchema="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -165,8 +161,21 @@
     <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
     <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_DeleteRLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractFiles" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="ShortcutFlags.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShortcutFlags.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
     <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
@@ -197,15 +206,35 @@
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_ApplyShortcutFlags" Type="3073" Source="ShortcutFlags.dll" Target="UpdateShortcutFlags" WithoutSeq="true"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER" Type="51" Source="AI_ExtractFiles" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_EstimateExtractFiles" Type="1" Source="Prereq.dll" Target="EstimateExtractFiles"/>
+    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ExtractFiles" Type="1025" Source="Prereq.dll" Target="ExtractSourceFiles" AdditionalSeq="AI_DATA_SETTER"/>
+    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
+    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_PinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="PinShortcuts"/>
+    <ROW Action="AI_PinToStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="PinToStartScreen" WithoutSeq="true"/>
+    <ROW Action="AI_PinToTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="PinToTaskbar" WithoutSeq="true"/>
+    <ROW Action="AI_PrepareShortcutFlags" Type="1" Source="ShortcutFlags.dll" Target="PrepareActionData"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="AI_UnpinFromStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromStartScreen" WithoutSeq="true"/>
+    <ROW Action="AI_UnpinFromTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromTaskbar" WithoutSeq="true"/>
+    <ROW Action="AI_UnpinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="UnpinShortcuts"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
@@ -213,17 +242,18 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
-    <ROW Feature_="MainFeature" Component_="Caliburn.Micro.dll.deploy"/>
     <ROW Feature_="MainFeature" Component_="trackpuls.exe"/>
     <ROW Feature_="MainFeature" Component_="Caliburn.Micro.dll"/>
     <ROW Feature_="MainFeature" Component_="Caliburn.Micro.Platform.Core.dll"/>
+    <ROW Feature_="MainFeature" Component_="Caliburn.Micro.Platform.Core.xml"/>
     <ROW Feature_="MainFeature" Component_="Caliburn.Micro.Platform.dll"/>
+    <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
     <ROW Feature_="MainFeature" Component_="EntityFramework.dll"/>
     <ROW Feature_="MainFeature" Component_="EntityFramework.SqlServer.dll"/>
     <ROW Feature_="MainFeature" Component_="MaterialDesignColors.dll"/>
     <ROW Feature_="MainFeature" Component_="MaterialDesignThemes.Wpf.dll"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll"/>
-    <ROW Feature_="MainFeature" Component_="Capture_1015050002.jpg"/>
+    <ROW Feature_="MainFeature" Component_="Capture_1024961158.jpg"/>
     <ROW Feature_="MainFeature" Component_="System.Data.SQLite.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Data.SQLite.EF6.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Data.SQLite.Linq.dll"/>
@@ -243,25 +273,49 @@
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractFiles" Sequence="3998" Builds="DefaultBuild"/>
+    <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
+    <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild"/>
+    <ROW Action="AI_PrepareShortcutFlags" Condition="(VersionNT &gt; 501) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="4501"/>
+    <ROW Action="AI_PinShortcuts" Condition="(VersionNT &gt; 600) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="6499"/>
+    <ROW Action="AI_UnpinShortcuts" Condition="(VersionNT &gt; 600) AND (REMOVE = &quot;ALL&quot;)" Sequence="3199"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
     <ROW Action="AI_DpiContentScale" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="SETUPEXEDIR OR (REMOVE=&quot;ALL&quot;)" Description="This package can only be run from a bootstrapper." DescriptionLocId="AI.LaunchCondition.RequireBootstrapper" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
+    <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+    <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="trackpuls" Directory_="SHORTCUTDIR" Name="TRACKP~1|trackpuls" Component_="trackpuls.exe_1" Target="[#trackpuls.exe_1]" Hotkey="0" Icon_="tp_ic.exe" IconIndex="0" ShowCmd="1" WkDir="trackpuls_Dir"/>
+    <ROW Shortcut="Trackpuls" Directory_="SHORTCUTDIR" Name="TRACKP~1|Trackpuls" Component_="trackpuls.exe_1" Target="[#trackpuls.exe_1]" Description="time tracking software" Hotkey="0" Icon_="tp_ic.exe" IconIndex="0" ShowCmd="1" WkDir="trackpuls_Dir" Advertised="true"/>
+    <ROW Shortcut="Trackpuls_1" Directory_="DesktopFolder" Name="TRACKP~1|Trackpuls" Component_="trackpuls.exe_1" Target="[#trackpuls.exe_1]" Description="time tracking software" Hotkey="0" Icon_="tp_ic.exe" IconIndex="0" ShowCmd="1" WkDir="trackpuls_Dir" Advertised="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>

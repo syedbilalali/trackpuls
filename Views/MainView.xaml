@@ -10,7 +10,7 @@
         xmlns:track ="clr-namespace:trackpuls"
         mc:Ignorable="d"
         Title="Login" Height="666" Width="384"
-        ResizeMode="CanResize" Top="10"
+        ResizeMode="CanMinimize" Top="10"
         WindowStartupLocation="CenterScreen"  
         WindowStyle="None"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -20,7 +20,6 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
-  
     <Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
             <BeginStoryboard>
@@ -72,7 +71,7 @@
                     <Image Name="Close"  Source="../Assets/1.ico" Height="12" Width="12"  />
                 </Button>
                 <Button Name="MinimiseBtn"   Style="{DynamicResource MaterialDesignToolButton}" Click="MinimiseBtn_Click" MouseEnter="MinimiseBtn_MouseEnter" MouseLeave="MinimiseBtn_MouseLeave">
-                    <Image Name="Minimise" Source="../Assets/2.ico" Height="12" Width="12"  />
+                    <Image   Name="Minimise" Source="../Assets/2.ico" Height="12" Width="12"  />
                 </Button>
                 <Button Name="PlusBtn"  Style="{DynamicResource MaterialDesignToolButton}" Click="PlusBtn_Click" MouseEnter="PlusBtn_MouseEnter" MouseLeave="PlusBtn_MouseLeave">
                     <Image Name="Plus" Source="../Assets/3.ico" Height="12" Width="12" />
@@ -83,65 +82,25 @@
                 </Button>
             </StackPanel>
             <Grid Grid.Row="1">
-                <ContentControl Grid.Row="1" x:Name="ActiveItem"></ContentControl>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="269*"/>
+                    <ColumnDefinition Width="107*"/>
+                </Grid.ColumnDefinitions>
+                <ContentControl x:Name="ActiveItem" Grid.ColumnSpan="2"/>
             </Grid>
             <materialDesign:Snackbar Grid.Row="1" MessageQueue="{Binding BoundMessageQueue}"  x:Name="Snackbar" HorizontalAlignment="Stretch"/>
         </Grid>
         <materialDesign:DrawerHost.RightDrawerContent>
             <StackPanel Height="662" Width="300">
-            <DockPanel Width="300">
-                <TextBlock DockPanel.Dock="Top" Text="Account" FontSize="20" Margin="5"  FontWeight="Light"  HorizontalAlignment="Center"/>
-                <!--<TextBlock DockPanel.Dock="Bottom" Text="Sign Out" FontSize="15" Margin="10" FontWeight="DemiBold"  Foreground="OrangeRed"   HorizontalAlignment="Left"/>-->
-                    <Button  DockPanel.Dock="Bottom" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                <DockPanel Width="300">
+                    <TextBlock DockPanel.Dock="Top" Text="Account" FontSize="20" Margin="5"  FontWeight="Light"  HorizontalAlignment="Center"/>
+                    <!--<TextBlock DockPanel.Dock="Bottom" Text="Sign Out" FontSize="15" Margin="10" FontWeight="DemiBold"  Foreground="OrangeRed"   HorizontalAlignment="Left"/>-->
+                    <Button  DockPanel.Dock="Bottom" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                     CommandParameter="{x:Static Dock.Right}" FontSize="15" Margin="10" FontWeight="DemiBold"  Foreground="OrangeRed"   HorizontalAlignment="Left" cal:Message.Attach="[Action btnSignOut() ]"  Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Click here to signout..">
                         Signout
                     </Button>
                     <Separator DockPanel.Dock="Bottom" Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3"  />
-                <StackPanel Width="300" >
-                    <TextBlock  Text="Companies" FontSize="12" Margin="7" FontWeight="Medium" Foreground="BurlyWood"  HorizontalAlignment="Left"/>
-                    <Separator  Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3" />
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel Width="300" Height="200" MaxHeight="300">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"></ColumnDefinition>
-                                    <ColumnDefinition Width="150"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0"  Text="Jhon" FontSize="15"  FontWeight="Medium" Margin="10" Foreground="BurlyWood"  HorizontalAlignment="Left"/>
-                                <materialDesign:PackIcon Grid.Column="1" Kind="Tick" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>
-                            </Grid>
-                            <Separator  Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3" />
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"></ColumnDefinition>
-                                    <ColumnDefinition Width="150"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0"  Text="Jhon" FontSize="15"  FontWeight="Medium" Margin="10" Foreground="BurlyWood"  HorizontalAlignment="Left"/>
-                                <materialDesign:PackIcon Grid.Column="1" Kind="Tick" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>
-                            </Grid>
-                            <Separator  Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3" />
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"></ColumnDefinition>
-                                    <ColumnDefinition Width="150"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0"  Text="Jhon" FontSize="15"  FontWeight="Medium" Margin="10" Foreground="BurlyWood"  HorizontalAlignment="Left"/>
-                                <materialDesign:PackIcon Grid.Column="1" Kind="Tick" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>
-                            </Grid>
-                            <Separator  Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3" />
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"></ColumnDefinition>
-                                    <ColumnDefinition Width="150"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0"  Text="Jhon" FontSize="15"  FontWeight="Medium" Margin="10" Foreground="BurlyWood"  HorizontalAlignment="Left"/>
-                                <materialDesign:PackIcon Grid.Column="1" Visibility="Hidden" Kind="Tick" HorizontalAlignment="Center" VerticalAlignment="Center"></materialDesign:PackIcon>
-                            </Grid>
-                            <Separator  Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3" />
-                        </StackPanel>
-                    </ScrollViewer>
-                </StackPanel>
-            </DockPanel>
+                </DockPanel>
             </StackPanel>
         </materialDesign:DrawerHost.RightDrawerContent>
     </materialDesign:DrawerHost>

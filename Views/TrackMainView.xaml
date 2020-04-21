@@ -41,10 +41,10 @@
             <materialDesign:Card  materialDesign:ShadowAssist.ShadowDepth="Depth0"  materialDesign:ShadowAssist.ShadowEdges="Bottom" Height="30">
                 <DockPanel LastChildFill = "True" Grid.ColumnSpan="1">
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <Button x:Name="btnAttendanceTrack" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="MaterialDesignFlatButton">
+                        <Button x:Name="btnAttendanceTrack" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Take Attendence ">
                             Attendance
                         </Button>
-                        <Button x:Name="btnTimeTrack"  Style="{StaticResource MaterialDesignFlatButton}"   ToolTip="MaterialDesignFlatButton">
+                        <Button x:Name="btnTimeTrack"  Style="{StaticResource MaterialDesignFlatButton}"   ToolTip="Assigned Projects List">
                             Projects List
                             <!-- "Time Tracking"  Menu Name -->
                         </Button>

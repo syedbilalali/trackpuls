@@ -24,6 +24,7 @@ namespace trackpuls.Models
         public string bill_rate { get; set; }
         public string overtime_bill_rate { get; set; }
         public string created_at { get; set; }
+        public bool logout { get; set; }
         
     }
 }

@@ -23,11 +23,12 @@ namespace trackpuls.Views
     /// </summary>
     public partial class MainView : Window
     {
-        private readonly Storyboard _storyboard;
+        
         public MainView()
         {
             InitializeComponent();
             this.MouseLeftButtonDown += MainView_MouseLeftButtonDown;
+            App.Current.Properties["LD"] = LeftDrawerHost;
            
 
         }
@@ -83,12 +84,12 @@ namespace trackpuls.Views
             Plus.Source = new BitmapImage(new Uri(@"../Assets/3.ico", UriKind.Relative));
         }
         //-------------Window Button------------//
-        private bool closeCompleted = false;
+        
 
 
         private void FormFadeOut_Completed(object sender, EventArgs e)
         {
-            closeCompleted = true;
+            //closeCompleted = true;
           //   this.Close();
         }
 

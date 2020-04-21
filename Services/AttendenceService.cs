@@ -46,7 +46,7 @@ namespace trackpuls.Services
                               new KeyValuePair<string, string>("id", ""),
                     });
                     //HTTP POST
-                    response = await client.PostAsync("api/ApiAttendenceController/clockinapi", content).ConfigureAwait(false);
+                    response = await client.PostAsync("api/ApiAttendenceController/clockinapi", content);
                     if (response.IsSuccessStatusCode)
                     {
                         // Reading Response.
