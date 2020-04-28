@@ -84,7 +84,6 @@ namespace trackpuls.ViewModels
             var tsk = Task<Employee>.Run(() =>
             {
                 Thread.Sleep(100);
-               // ct.ThrowIfCancellationRequested();
                 return  ProjectListServices.p_ProjectList(userid);
             });
             return await tsk;

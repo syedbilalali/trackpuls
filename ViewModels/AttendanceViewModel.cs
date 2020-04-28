@@ -14,6 +14,7 @@ using System.Windows.Threading;
 using System.Windows.Interop;
 using trackpuls.Helper;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace trackpuls.ViewModels
 {
@@ -46,7 +47,7 @@ namespace trackpuls.ViewModels
 
             this.parent = parent;
             userData = (UserData)App.Current.Properties["userdata"];
-            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer = new System.Windows.Threading.DispatcherTimer(DispatcherPriority.Background);
             dispatcherTimer.Interval = new TimeSpan(0,0,0);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
 
@@ -145,7 +146,8 @@ namespace trackpuls.ViewModels
                 if (IsClockOut)
                 {
                     dispatcherTimer.Stop();
-                    MessageBoxResult result = MessageBox.Show(" Do you want to resume ?", "Resume", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    string title = " Resume ";
+                    MessageBoxResult result = MessageBox.Show(" Do you want to resume session ?", title, MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
                         dispatcherTimer.Start();
@@ -185,7 +187,7 @@ namespace trackpuls.ViewModels
         public async void btnClockOut() {
 
            //Set Button Visibility
-           TimeSpan duration = _lastTime.Subtract(DateTime.Now);
+            TimeSpan duration = _lastTime.Subtract(DateTime.Now);
             IsClockIn = true;
             IsClockOut = false;
             lblStarted = "Not Started Yet";

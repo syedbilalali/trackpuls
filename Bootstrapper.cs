@@ -33,8 +33,8 @@ namespace trackpuls
         public Bootstrapper() {
 
             Initialize();
-            timer = new DispatcherTimer();
-            app_web_timr = new DispatcherTimer();
+            timer = new DispatcherTimer(DispatcherPriority.Background);
+            app_web_timr = new DispatcherTimer(DispatcherPriority.Background);
             proList = new List<ProcessInfo>();
 
 
