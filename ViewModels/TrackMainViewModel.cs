@@ -45,11 +45,18 @@ namespace trackpuls.ViewModels
                 ActivateItem(this.timetrack);
             }
             else {
-                timetrack = new TimeTrackViewModel(this.parent);
+                timetrack = new TimeTrackViewModel(this.parent , this);
                 ActivateItem(timetrack);
             }
             
         }
+        public void setScreen(Screen item) {
+
+            if (item != null) { 
+                ActivateItem(item);
+            }
+        }
+
     }
 
 }

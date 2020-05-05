@@ -57,7 +57,7 @@
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0,0,0,1" CornerRadius="3" />
     </WindowChrome.WindowChrome>
-    <materialDesign:DrawerHost x:Name="LeftDrawerHost" RightDrawerBackground="{DynamicResource MaterialDesignPaper}" >
+    <materialDesign:DrawerHost x:Name="LeftDrawerHost" RightDrawerBackground="{DynamicResource MaterialDesignPaper}" BorderBrush="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" >
         <Grid ShowGridLines="false" Name="pnlView" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

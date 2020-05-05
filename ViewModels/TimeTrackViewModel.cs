@@ -19,6 +19,7 @@ namespace trackpuls.ViewModels
         private ObservableCollection<Project> proj;
         private List<Project> _projectsList = new List<Project>();
         private IConductor parent;
+        private Screen view_parent;
         #endregion
 
         #region Getter Setter Properties 
@@ -41,9 +42,10 @@ namespace trackpuls.ViewModels
         }
         #endregion
         #region Constructor
-        public TimeTrackViewModel(IConductor parent)
+        public TimeTrackViewModel(IConductor parent , Screen view_parent)
         {
             this.parent = parent;
+            this.view_parent = view_parent;
             proj = new ObservableCollection<Project>();
             UserData userData = (UserData)App.Current.Properties["userdata"];
             if (userData != null)
@@ -61,6 +63,13 @@ namespace trackpuls.ViewModels
                 {
                     foreach (var pro in proj.data)
                     {
+                        pro.shname = pro.name.First<char>().ToString();
+                        string task_count = "0";
+                         TaskCount tc = Array.Find<TaskCount>(proj.task, ByProjectID(pro.project_id));
+                    //    TaskCount tc = proj.task.Find(ByProjectID(pro.project_id));
+                        if(tc != null)
+                            task_count = tc.total_task;
+                        pro.total_task = task_count  + " TASKS";
                         ProjectList.Add(pro);
                     }
                 }
@@ -75,9 +84,17 @@ namespace trackpuls.ViewModels
 
                 var parent = this.parent as MainViewModel;
                 parent.showMessage(" " + e.Message + " ");
+                System.Windows.MessageBox.Show("Error " + e.Message);
 
             }
 
+        }
+        private Predicate<TaskCount> ByProjectID(string projectID)
+        {
+            return delegate (TaskCount OrgElem)
+            {
+                return OrgElem.project_id == projectID;
+            };
         }
         async Task<Projects> GetProjects1(string  userid)
         {
@@ -88,7 +105,10 @@ namespace trackpuls.ViewModels
             });
             return await tsk;
         }
+        public void ViewTask(Project data) {
+            TrackMainViewModel tsd = (TrackMainViewModel)this.view_parent;
+            tsd.setScreen(new TaskViewModel(this.parent, this.view_parent));
+        }
         #endregion
-
     }
 }

@@ -10,7 +10,10 @@ namespace trackpuls.Models
     public class Project 
     {   
         public string project_id { get; set; }
-        public string user_id { get; set; }
-        public string name { get; set; }
+        public string user_id { get; set;  }
+        public string name { get; set;  }
+        public string shname { get; set; }
+        public string total_task { get; set; }
+
     }
 }

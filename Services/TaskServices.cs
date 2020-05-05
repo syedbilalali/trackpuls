@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using trackpuls.Models;
 
 namespace trackpuls.Services
 {
-    public class ProjectListServices
+    class TaskServices
     {
-        public static async Task<Projects> p_ProjectList(string userid)
+        public static async Task<TaskResp> p_TaskList(string userid)
         {
-
-            Projects resp = new Projects();
+            TaskResp resp = new TaskResp();
             try
             {
 
@@ -40,12 +38,13 @@ namespace trackpuls.Services
                          new KeyValuePair<string, string>("user_id", userid)
                     });
                     //HTTP POST
-                    response = await client.PostAsync("api/ApiProjectController/showapiproject", content).ConfigureAwait(false);
+                    response = await client.PostAsync("api/ApiTaskController/task_details", content).ConfigureAwait(false);
                     if (response.IsSuccessStatusCode)
                     {
                         // Reading Response.
-                        string result = response.Content.ReadAsStringAsync().Result;      
-                        resp = JsonConvert.DeserializeObject<Projects>(result);
+                        string result = response.Content.ReadAsStringAsync().Result;
+                     //   System.Windows.MessageBox.Show(result);
+                        resp = JsonConvert.DeserializeObject<TaskResp>(result);
                         // Releasing.
                         response.Dispose();
                     }

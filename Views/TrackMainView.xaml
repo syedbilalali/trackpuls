@@ -45,8 +45,7 @@
                             Attendance
                         </Button>
                         <Button x:Name="btnTimeTrack"  Style="{StaticResource MaterialDesignFlatButton}"   ToolTip="Assigned Projects List">
-                            Projects List
-                            <!-- "Time Tracking"  Menu Name -->
+                            Time Tracking
                         </Button>
                     </StackPanel>
                 </DockPanel>
@@ -58,7 +57,7 @@
             <!---Bottom Last Sync Seprator-->
             <Separator Grid.Row="4" Style="{StaticResource MaterialDesignDarkSeparator}" BorderThickness="5" Height="Auto" Margin="0,2,0,3"  />
             <materialDesign:Card Grid.Row="5" Height="100" materialDesign:ShadowAssist.ShadowDepth="Depth1"  materialDesign:ShadowAssist.ShadowEdges="Top" >
-                <Grid  Height="auto" Width="auto" ShowGridLines="FALSE" >
+                <Grid  Height="auto" Width="auto">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"></RowDefinition>
                     </Grid.RowDefinitions>
