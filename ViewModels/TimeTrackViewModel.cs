@@ -106,6 +106,8 @@ namespace trackpuls.ViewModels
             return await tsk;
         }
         public void ViewTask(Project data) {
+
+            System.Windows.MessageBox.Show(" Project ID " + data.project_id + " Project Name : " + data.name);
             TrackMainViewModel tsd = (TrackMainViewModel)this.view_parent;
             tsd.setScreen(new TaskViewModel(this.parent, this.view_parent));
         }

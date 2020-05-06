@@ -84,7 +84,7 @@
                         </WrapPanel.Style>
                         <ScrollViewer VerticalScrollBarVisibility="Auto"  CanContentScroll="True">
                             <StackPanel Orientation="Vertical" Height="450" MaxHeight="450" OverridesDefaultStyle="False">
-                                <ItemsControl x:Name="NTTaskList">
+                                <ItemsControl  ItemsSource="{ Binding Path=Nt_Task,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
                                     <ItemsControl.ItemContainerStyle>
                                         <Style TargetType="ContentPresenter"></Style>
                                     </ItemsControl.ItemContainerStyle>
@@ -100,7 +100,7 @@
                                                         </Grid.ColumnDefinitions>
                                                         <Grid Grid.Column="0" Margin="5,0,0,0"  >
                                                             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="5">
-                                                                <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="{ Binding name}" Style="{DynamicResource MaterialDesignTitleTextBlock}" RenderTransformOrigin="0.47,1.938" Height="19"/>
+                                                                <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="{ Binding Path=name , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource MaterialDesignTitleTextBlock}" RenderTransformOrigin="0.47,1.938" Height="19"/>
                                                                 <Button Style="{StaticResource MaterialDesignFlatButton}"  ToolTip="Task Priority Level" HorizontalAlignment="Center"   FontWeight="Normal"  FontSize="12">
                                                                     <StackPanel Orientation="Horizontal">
                                                                         <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="Cyan"   Kind="ArrowUpDropCircle" ></materialDesign:PackIcon>
@@ -110,7 +110,7 @@
                                                             </StackPanel>
                                                         </Grid>
                                                         <Grid Grid.Column="1">
-                                                            <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Text="00:00:00" FontSize="15" FontWeight="Bold" Style="{DynamicResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Right" Margin="5,28" Width="60"></TextBlock>
+                                                            <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Text="{Binding Path=duration , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" FontSize="15" FontWeight="Bold" Style="{DynamicResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Right" Margin="5,28" Width="60"></TextBlock>
                                                         </Grid>
                                                         <Button Grid.Column="2" Click="BtnSelectCompany_Click" Visibility="Visible"   x:Name="btnSelectCompany" cal:Message.Attach="[Event Click] = [Action RunTimer($dataContext)]" Style="{DynamicResource MaterialDesignToolButton}" Height="Auto" Margin="0,10" >
                                                             <materialDesign:PackIcon Name="icon" Foreground="Blue" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30"   Kind="PlayCircle" ></materialDesign:PackIcon>

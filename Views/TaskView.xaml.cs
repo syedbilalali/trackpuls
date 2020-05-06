@@ -26,7 +26,6 @@ namespace trackpuls.Views
         {
             InitializeComponent();
         }
-
         private void BtnSelectCompany_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
