@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using Caliburn.Micro;
 using trackpuls.Models;
 using trackpuls.Services;
@@ -24,6 +26,10 @@ namespace trackpuls.ViewModels
         private TaskData _selectedTaskData;
         private int _selectedIndex;
 
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        Stopwatch stopWatch = new Stopwatch();
+        string currentTime = string.Empty;
+
         public TaskViewModel(IConductor parent, Screen view_parent)
         {
             this.parent = parent;
@@ -32,6 +38,19 @@ namespace trackpuls.ViewModels
             if (userData != null)
             {
                 GetTasks(userData.id.ToString());
+            }
+            dispatcherTimer.Tick += new EventHandler(dt_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+        }
+        void dt_Tick(object sender, EventArgs e)
+        {
+            if (stopWatch.IsRunning)
+            {
+                TimeSpan ts = stopWatch.Elapsed;
+                currentTime = String.Format("{0:00}:{1:00}:{2:00}",
+                ts.Hours, ts.Minutes, ts.Seconds);
+                // clocktxt.Text = currentTime;
+                Nt_Task[_selectedIndex].duration = currentTime;
             }
         }
         #region Getter Setter Properties 
@@ -79,8 +98,9 @@ namespace trackpuls.ViewModels
                     {   
 
                         if (task.status == "0")
-                        { 
+                        {
                             //On Hold
+                            Oh_Task.Add(task);
                         }
                         if (task.status == "1")
                         {   
@@ -90,12 +110,12 @@ namespace trackpuls.ViewModels
                         if (task.status == "2")
                         {
                             //In Progress
-                         //   Nt_Task.Add(task);
+                            Ip_Task.Add(task);
                         }
                         if (task.status == "3")
                         {
                             //Completed
-                           // Nt_Task.Add(task);
+                            Cp_Task.Add(task);
                         }
 
 
@@ -129,12 +149,29 @@ namespace trackpuls.ViewModels
            // System.Windows.MessageBox.Show("Details" + td.name);
             _selectedIndex = Nt_Task.IndexOf(td);
             if (!td.isRunning) {
-                Nt_Task[_selectedIndex].name = td.name + "(Run)";
+                Nt_Task[_selectedIndex].status  = "S";
+                Nt_Task[_selectedIndex].isRunning = true;
+                startTime();
             }else
             {
-                System.Windows.MessageBox.Show(" Already Running ");
+                Nt_Task[_selectedIndex].status = "P";
+                Nt_Task[_selectedIndex].isRunning = false;
+                // System.Windows.MessageBox.Show(" Already Running ");
+                stopTime();
             }
            
+        }
+        private void startTime() {
+            
+             stopWatch.Start(); 
+             dispatcherTimer.Start();  
+        }
+        private void stopTime() {
+            if (stopWatch.IsRunning)
+            {
+                stopWatch.Stop();
+                dispatcherTimer.Stop();
+            }
         }
     }
 }
