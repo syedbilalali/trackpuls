@@ -145,7 +145,7 @@ namespace trackpuls.Models
                 OnPropertyChanged("duration");
             }
         }
-        private bool _IsRunning ;
+        private bool _IsRunning = false;
         public bool isRunning {
             get {
                 return _IsRunning;

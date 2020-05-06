@@ -18,7 +18,7 @@ namespace trackpuls.ViewModels
         private ObservableCollection<TaskData> _oh = new ObservableCollection<TaskData>();
         private ObservableCollection<TaskData> _ip = new ObservableCollection<TaskData>();
         private ObservableCollection<TaskData> _cp = new ObservableCollection<TaskData>();
-        private List<TaskData> _taskList = new List<TaskData>();
+
         private IConductor parent;
         private Screen view_parent;
         private TaskData _selectedTaskData;
@@ -57,7 +57,7 @@ namespace trackpuls.ViewModels
         #endregion
         public void btnSelectCompany()
         {
-            // System.Windows.MessageBox.Show(" Hello World");
+           //  System.Windows.MessageBox.Show(" Hello World");
         }
         public void btnBackProjects()
         {
@@ -76,18 +76,28 @@ namespace trackpuls.ViewModels
                 {
                     // System.Windows.MessageBox.Show(" Task Count : " + tr.data.Count());
                     foreach (var task in tr.data)
-                    {
+                    {   
 
+                        if (task.status == "0")
+                        { 
+                            //On Hold
+                        }
                         if (task.status == "1")
-                        {
-                            // System.Windows.MessageBox.Show(" To do " + task.status + " Task : " + task.name);
-                        //    NTTaskList.Add(task);
+                        {   
+                            //To do
                             Nt_Task.Add(task);
                         }
-                        //if (task.status =="0") {
-                        //    TaskList.Add(task);
-                        //}
-                        //  TaskList.Add(task);
+                        if (task.status == "2")
+                        {
+                            //In Progress
+                         //   Nt_Task.Add(task);
+                        }
+                        if (task.status == "3")
+                        {
+                            //Completed
+                           // Nt_Task.Add(task);
+                        }
+
 
                     }
                 }
