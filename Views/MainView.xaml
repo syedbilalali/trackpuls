@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:conv="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:trackpuls.Views"
@@ -53,6 +54,42 @@
     </Window.Triggers>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Converter" />
+        <Style x:Key="CardStyle1" TargetType="{x:Type materialDesign:Card}">
+            <Setter Property="Background" Value="#2fff0000"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type materialDesign:Card}">
+                        <Grid Margin="{TemplateBinding Margin}" Background="Transparent">
+                            <AdornerDecorator>
+                                <AdornerDecorator.CacheMode>
+                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                </AdornerDecorator.CacheMode>
+                                <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ShadowAssist.ShadowDepth), Converter={x:Static conv:ShadowConverter.Instance}}"
+                    CornerRadius="{TemplateBinding UniformCornerRadius}">
+                                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
+                        x:Name="PART_ClipBorder"
+                        Clip="{TemplateBinding ContentClip}" />
+                                </Border>
+                            </AdornerDecorator>
+                            <ContentPresenter 
+            x:Name="ContentPresenter"                    
+            Margin="{TemplateBinding Padding}"
+            Clip="{TemplateBinding ContentClip}"
+            Content="{TemplateBinding ContentControl.Content}" 
+            ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
+            ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
+            ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">
+                            </ContentPresenter>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="PART_ClipBorder" Property="Background" Value="#4fff0000" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0,0,0,1" CornerRadius="3" />

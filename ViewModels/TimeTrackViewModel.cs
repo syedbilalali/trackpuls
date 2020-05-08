@@ -63,7 +63,8 @@ namespace trackpuls.ViewModels
                 {
                     foreach (var pro in proj.data)
                     {
-                        pro.shname = pro.name.First<char>().ToString();
+                       // pro.shname = pro.name.First<char>().ToString();
+                        pro.shname = pro.name.Substring(0, 2).ToUpper();
                         string task_count = "0";
                          TaskCount tc = Array.Find<TaskCount>(proj.task, ByProjectID(pro.project_id));
                     //    TaskCount tc = proj.task.Find(ByProjectID(pro.project_id));

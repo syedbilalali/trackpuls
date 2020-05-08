@@ -61,7 +61,7 @@
                                 <DataTemplate>
                                     <WrapPanel>
                                         <materialDesign:Card Padding="15" Margin="10, 2,10,2" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue" 
-                                            UniformCornerRadius="2"  Width="360">
+                                            UniformCornerRadius="2" Width="360">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="7*"/>
@@ -73,14 +73,14 @@
                                                       Style="{StaticResource MaterialDesignActionToggleButton}"
                                                       IsEnabled="True"
                                                       IsHitTestVisible="False"
-                                                      ToolTip="MaterialDesignActionToggleButton" />
+                                                      ToolTip="MaterialDesignActionToggleButton" Background="Tomato" />
                                                 <Grid Grid.Column="1" Margin="10,0,0,0">
                                                     <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="1" Text="{ Binding name }" Style="{DynamicResource MaterialDesignTitleTextBlock}"></TextBlock>
                                                 </Grid>
                                                 <Button Grid.Column="2" Visibility="Visible"   x:Name="btnSelectedProject" cal:Message.Attach="[Event Click] = [Action ViewTask($dataContext)]"  Style="{DynamicResource MaterialDesignToolButton}" VerticalAlignment="Top" d:LayoutOverrides="Height">
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="{ Binding total_task}" Foreground="Blue" FontWeight="Light" VerticalAlignment="Center" Margin="2,0,0,0"/>
-                                                        <materialDesign:PackIcon VerticalAlignment="Center"    Kind="KeyboardArrowRight" ></materialDesign:PackIcon>
+                                                        <materialDesign:PackIcon VerticalAlignment="Center"  Kind="KeyboardArrowRight"></materialDesign:PackIcon>
                                                     </StackPanel>
                                                 </Button>
                                             </Grid>
