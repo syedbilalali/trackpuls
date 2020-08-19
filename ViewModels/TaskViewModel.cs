@@ -167,6 +167,7 @@ namespace trackpuls.ViewModels
              dispatcherTimer.Start();  
         }
         private void stopTime() {
+
             if (stopWatch.IsRunning)
             {
                 stopWatch.Stop();

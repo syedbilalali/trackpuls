@@ -110,9 +110,9 @@ namespace trackpuls.ViewModels
             var conductor = this.Parent as IConductor;
             if (Email != null && Password != null) {
 
-                try { 
-                
-                    LoginResp resp = await LoginService.p_Login(Email, Password);
+                try {
+                    NLoginServices log = new NLoginServices();
+                    LoginResp resp = await log.p_Login(Email, Password);
                     if (resp.status == "true")
                     {    
                         conductor.ActivateItem(new TrackMainViewModel(this.parent));
@@ -130,7 +130,7 @@ namespace trackpuls.ViewModels
                 catch (Exception ex)
                 {
                     var parent = this.parent as MainViewModel;
-                    parent.showMessage(ex.Message);
+                    parent.showMessage( ex.Message);
                 }
             }   
         }
