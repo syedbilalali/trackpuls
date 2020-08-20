@@ -65,7 +65,7 @@
             <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
                 <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
                 <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="Background" Value="DarkGray"/>
+                <Setter Property="Background" Value="White"/>
                 <Setter Property="Width" Value="5"/>
                 <Setter Property="Template">
                     <Setter.Value>
@@ -119,10 +119,29 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
         </ResourceDictionary>
-
-
+        <Style x:Key="ScrollViewerStyle1" TargetType="{x:Type ScrollViewer}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle x:Name="Corner" Grid.Column="1" Fill="{DynamicResource MaterialDesignSelection}" Grid.Row="1"/>
+                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="0" Margin="{TemplateBinding Padding}" Grid.Row="0"/>
+                            <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Grid.Row="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}"/>
+                            <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Grid.Row="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid Grid.Row="3" Height="auto" Width="auto">
         <Grid.RowDefinitions>
@@ -167,8 +186,8 @@
                                 </Style.Triggers>
                             </Style>
                         </WrapPanel.Style>
-                        <ScrollViewer>
-                            <StackPanel Orientation="Vertical" Height="600" MaxHeight="700" OverridesDefaultStyle="False">
+                        <ScrollViewer Style="{DynamicResource ScrollViewerStyle1}" VerticalScrollBarVisibility="Auto" Height="450" >
+                            <StackPanel Orientation="Vertical" Height="500" MaxHeight="500" OverridesDefaultStyle="True">
                                 <ItemsControl  ItemsSource="{ Binding Path=Nt_Task,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
                                     <ItemsControl.ItemContainerStyle>
                                         <Style TargetType="ContentPresenter"></Style>
@@ -176,19 +195,19 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
-                                                <materialDesign:Card Padding="2" Margin="10, 2,10,2" Style="{ DynamicResource CardStyle1}" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue"  UniformCornerRadius="2"  Width="360" >
+                                                <materialDesign:Card Padding="2" Margin="10, 2,10,2" Style="{ DynamicResource  CardStyle1 }" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue"  UniformCornerRadius="2"  Width="346" >
                                                     <Grid  Margin="0" Height="70">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="25*" />
                                                             <ColumnDefinition Width="25*"/>
                                                             <ColumnDefinition Width="15*"/>
                                                         </Grid.ColumnDefinitions>
-                                                        <Grid Grid.Column="0" Margin="5,0,0,0"  >
+                                                        <Grid Grid.Column="0" Margin="0,0,0,0"  >
                                                             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="5">
                                                                 <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="{ Binding Path=name , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource MaterialDesignTitleTextBlock}" RenderTransformOrigin="0.47,1.938" Height="19"/>
                                                                 <Button Style="{StaticResource MaterialDesignFlatButton}"  ToolTip="Task Priority Level" HorizontalAlignment="Center"   FontWeight="Normal"  FontSize="12">
                                                                     <StackPanel Orientation="Horizontal">
-                                                                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="Cyan"   Kind="ArrowUpDropCircle" ></materialDesign:PackIcon>
+                                                                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="White"   Kind="ArrowUpDropCircle" ></materialDesign:PackIcon>
                                                                         <TextBlock Text="{ Binding Path=status, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
                                                                     </StackPanel>
                                                                 </Button>

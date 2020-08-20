@@ -28,6 +28,7 @@ namespace trackpuls.Views
         }
         private void BtnSelectCompany_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show(" On Task Start ");
             Button button = sender as Button;
             PackIcon plybtn = button.FindName("icon") as PackIcon;
             if(plybtn.Kind == PackIconKind.PlayCircle) {

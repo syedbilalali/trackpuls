@@ -231,14 +231,14 @@ namespace trackpuls
                     if (App.Current.Properties["userdata"] != null) {
                         
                         UserData userdata = (UserData)App.Current.Properties["userdata"];
-                        ScreenResp resp = await ScreenshotService.p_UploadScreenshot(userdata.id, data);
-                        if (resp.status == "true")
-                        {
-                         // System.Windows.MessageBox.Show("Screenshot Uploaded " + resp.message +" User ID " + userdata.id);
-                        }
-                        else { 
-                         //  System.Windows.MessageBox.Show("Screenshot not Uploaded " + resp.message + " User ID " + userdata.id);
-                        }
+                     //   ScreenResp resp = await ScreenshotService.p_UploadScreenshot(userdata.id, data);
+                        //if (resp.status == "true")
+                        //{
+                        // // System.Windows.MessageBox.Show("Screenshot Uploaded " + resp.message +" User ID " + userdata.id);
+                        //}
+                        //else { 
+                        // //  System.Windows.MessageBox.Show("Screenshot not Uploaded " + resp.message + " User ID " + userdata.id);
+                        //}
                     }
                     captureBitmap.Dispose();
                     captureGraphics.Dispose();

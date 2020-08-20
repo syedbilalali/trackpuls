@@ -55,7 +55,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Converter" />
         <Style x:Key="CardStyle1" TargetType="{x:Type materialDesign:Card}">
-            <Setter Property="Background" Value="#2fff0000"/>
+            <Setter Property="Background" Value="WhiteSmoke"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type materialDesign:Card}">
