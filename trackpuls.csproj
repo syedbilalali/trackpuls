@@ -143,6 +143,7 @@
     <Compile Include="Core\BaseClient.cs" />
     <Compile Include="Helper\AllInputSources.cs" />
     <Compile Include="Helper\AutoLogOffHelper.cs" />
+    <Compile Include="Helper\InvertConverter.cs" />
     <Compile Include="Helper\KeyboardInput.cs" />
     <Compile Include="Helper\MouseInput.cs" />
     <Compile Include="Helper\OpenWindowGetter.cs" />
@@ -247,6 +248,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\DrawerHost.CustomTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\CardStyle\CardStyle1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\ScrollBar\ScrollBar1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

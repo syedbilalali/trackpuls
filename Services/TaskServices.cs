@@ -44,7 +44,8 @@ namespace trackpuls.Services
                     {
                         // Reading Response.
                         string result = response.Content.ReadAsStringAsync().Result;
-                     //   System.Windows.MessageBox.Show(result);
+
+                        System.Windows.MessageBox.Show(result);
                         resp = JsonConvert.DeserializeObject<TaskResp>(result);
                         // Releasing.
                         response.Dispose();

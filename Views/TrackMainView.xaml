@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:trackpuls.Views"
+             xmlns:convert="clr-namespace:trackpuls.Helper"
              mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
-             
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
     <UserControl.Resources>
@@ -51,9 +51,13 @@
                 </DockPanel>
             </materialDesign:Card>
             <!--Upper Menu Seprator-->
-            <Separator Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,2,0,3"  />
+            <Separator Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Height="Auto" Margin="0,1,0,5"  />
             <!---Page Content-->
-            <ContentControl Grid.Row="3" x:Name="ActiveItem"></ContentControl>
+            <ContentControl Grid.Row="3" x:Name="ActiveItem">
+                <ContentControl.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </ContentControl.RenderTransform>
+            </ContentControl>
             <!---Bottom Last Sync Seprator-->
             <Separator Grid.Row="4" Style="{StaticResource MaterialDesignDarkSeparator}" BorderThickness="5" Height="Auto" Margin="0,2,0,3"  />
             <materialDesign:Card Grid.Row="5" Height="100" materialDesign:ShadowAssist.ShadowDepth="Depth1"  materialDesign:ShadowAssist.ShadowEdges="Top" >

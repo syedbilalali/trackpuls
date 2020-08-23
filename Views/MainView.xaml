@@ -8,6 +8,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:trackpuls.Views"
+        xmlns:localhelp="clr-namespace:trackpuls.Helper"
         xmlns:track ="clr-namespace:trackpuls"
         mc:Ignorable="d"
         Title="Login" Height="666" Width="384"
@@ -54,45 +55,11 @@
     </Window.Triggers>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Converter" />
-        <Style x:Key="CardStyle1" TargetType="{x:Type materialDesign:Card}">
-            <Setter Property="Background" Value="WhiteSmoke"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type materialDesign:Card}">
-                        <Grid Margin="{TemplateBinding Margin}" Background="Transparent">
-                            <AdornerDecorator>
-                                <AdornerDecorator.CacheMode>
-                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
-                                </AdornerDecorator.CacheMode>
-                                <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ShadowAssist.ShadowDepth), Converter={x:Static conv:ShadowConverter.Instance}}"
-                    CornerRadius="{TemplateBinding UniformCornerRadius}">
-                                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
-                        x:Name="PART_ClipBorder"
-                        Clip="{TemplateBinding ContentClip}" />
-                                </Border>
-                            </AdornerDecorator>
-                            <ContentPresenter 
-            x:Name="ContentPresenter"                    
-            Margin="{TemplateBinding Padding}"
-            Clip="{TemplateBinding ContentClip}"
-            Content="{TemplateBinding ContentControl.Content}" 
-            ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
-            ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
-            ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">
-                            </ContentPresenter>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="PART_ClipBorder" Property="Background" Value="#4fff0000" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        
+        
     </Window.Resources>
     <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="0,0,0,1" CornerRadius="3" />
+        <WindowChrome GlassFrameThickness="0,0,0,1" CornerRadius="10" />
     </WindowChrome.WindowChrome>
     <materialDesign:DrawerHost x:Name="LeftDrawerHost" RightDrawerBackground="{DynamicResource MaterialDesignPaper}" BorderBrush="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" >
         <Grid ShowGridLines="false" Name="pnlView" >
@@ -123,7 +90,11 @@
                     <ColumnDefinition Width="269*"/>
                     <ColumnDefinition Width="107*"/>
                 </Grid.ColumnDefinitions>
-                <ContentControl x:Name="ActiveItem" Grid.ColumnSpan="2"/>
+                <ContentControl x:Name="ActiveItem" Grid.ColumnSpan="2">
+                    <ContentControl.RenderTransform>
+                        <TranslateTransform X="0" Y="0"></TranslateTransform>
+                    </ContentControl.RenderTransform>
+                </ContentControl>
             </Grid>
             <materialDesign:Snackbar Grid.Row="1" MessageQueue="{Binding BoundMessageQueue}"  x:Name="Snackbar" HorizontalAlignment="Stretch"/>
         </Grid>

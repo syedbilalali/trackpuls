@@ -47,9 +47,7 @@ namespace trackpuls.ViewModels
             if (stopWatch.IsRunning)
             {
                 TimeSpan ts = stopWatch.Elapsed;
-                currentTime = String.Format("{0:00}:{1:00}:{2:00}",
-                ts.Hours, ts.Minutes, ts.Seconds);
-                // clocktxt.Text = currentTime;
+                currentTime = String.Format("{0:00}:{1:00}:{2:00}",  ts.Hours, ts.Minutes, ts.Seconds);
                 Nt_Task[_selectedIndex].duration = currentTime;
             }
         }
@@ -149,9 +147,11 @@ namespace trackpuls.ViewModels
            // System.Windows.MessageBox.Show("Details" + td.name);
             _selectedIndex = Nt_Task.IndexOf(td);
             if (!td.isRunning) {
+
                 Nt_Task[_selectedIndex].status  = "S";
                 Nt_Task[_selectedIndex].isRunning = true;
                 startTime();
+
             }else
             {
                 Nt_Task[_selectedIndex].status = "P";
