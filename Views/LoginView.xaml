@@ -29,7 +29,7 @@
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
 
-            <!-- This template is from Beth Massi's article -->
+            
             <Style x:Key="myErrorTemplate" TargetType="Control">
                 <Setter Property="Validation.ErrorTemplate">
                     <Setter.Value>

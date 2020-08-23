@@ -16,7 +16,7 @@
                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Purple.xaml" />
                         <ResourceDictionary Source="Resources/DrawerHost.CustomTemplate.xaml" />
                         <ResourceDictionary Source="/Style/CardStyle/CardStyle1.xaml" />
-                        <ResourceDictionary Source="/Style/ScrollBar/ScrollBar1.xaml" />
+                        <ResourceDictionary Source="/Style/ScrollBar/ScrollBar2.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

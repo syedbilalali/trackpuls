@@ -82,7 +82,7 @@
                                 </Style.Triggers>
                             </Style>
                         </WrapPanel.Style>
-                        <ScrollViewer Style="{DynamicResource ScrollViewerStyle1}" VerticalScrollBarVisibility="Auto" Height="450" >
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="450" >
                             <StackPanel Orientation="Vertical" Height="500" MaxHeight="500" OverridesDefaultStyle="True">
                                 <ItemsControl  ItemsSource="{ Binding Path=Nt_Task,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
                                     <ItemsControl.ItemContainerStyle>
