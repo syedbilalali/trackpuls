@@ -55,8 +55,6 @@
     </Window.Triggers>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Converter" />
-        
-        
     </Window.Resources>
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0,0,0,1" CornerRadius="10" />

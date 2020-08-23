@@ -82,8 +82,8 @@
                                 </Style.Triggers>
                             </Style>
                         </WrapPanel.Style>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="450" >
-                            <StackPanel Orientation="Vertical" Height="500" MaxHeight="500" OverridesDefaultStyle="True">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel Orientation="Vertical" Height="Auto" OverridesDefaultStyle="True">
                                 <ItemsControl  ItemsSource="{ Binding Path=Nt_Task,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
                                     <ItemsControl.ItemContainerStyle>
                                         <Style TargetType="ContentPresenter"></Style>
