@@ -14,11 +14,12 @@
                                 <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
                             </AdornerDecorator.CacheMode>
                             <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ShadowAssist.ShadowDepth), Converter={x:Static conv:ShadowConverter.Instance}}"
-                    CornerRadius="{TemplateBinding UniformCornerRadius}">
+                                  CornerRadius="{TemplateBinding UniformCornerRadius}" >
                                 <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
-                        x:Name="PART_ClipBorder"
-                        Clip="{TemplateBinding ContentClip}" />
+                                  x:Name="PART_ClipBorder"
+                                  Clip="{TemplateBinding ContentClip}" />
                             </Border>
+                          
                         </AdornerDecorator>
                         <ContentPresenter 
             x:Name="ContentPresenter"                    

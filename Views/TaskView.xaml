@@ -92,7 +92,7 @@
                                         <DataTemplate>
                                             <WrapPanel>
                                                
-                                                        <materialDesign:Card Padding="2" Margin="10, 2,10,2" Style="{ DynamicResource  CardStyle1 }" materialDesign:ShadowAssist.ShadowDepth="Depth1" materialDesign:ShadowAssist.ShadowEdges="All"  BorderBrush="Blue"  UniformCornerRadius="2"  Width="346" >
+                                                        <materialDesign:Card Padding="2" Margin="10, 2,10,2" Style="{ DynamicResource  CardStyle1 }" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ShadowAssist.ShadowEdges="Bottom"  BorderBrush="Blue"  UniformCornerRadius="1"  Width="346" >
                                                     <Grid  Margin="0" Height="70">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="25*" />
