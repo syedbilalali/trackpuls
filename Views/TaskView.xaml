@@ -62,7 +62,7 @@
                     </StackPanel>
                 </Button>
                 <DockPanel LastChildFill="False"  Margin="5">
-                    <Label  Content="Wiztom" DockPanel.Dock="Left"   Margin="15,0,0,0" FontWeight="Bold" Foreground="Black" FontSize="15"/>
+                    <Label Content="" x:Name="Project_Name"  DockPanel.Dock="Left"   Margin="15,0,0,0" FontWeight="Bold" Foreground="Black" FontSize="15"/>
                     <ComboBox  Margin="0,0,15,0" DockPanel.Dock="Right"  materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding ElementName=DisplaySelectedItemCheckBox,  Path=IsChecked}">
                         <ComboBoxItem x:Name="NotStarted"  IsSelected="True">Not Yet Started</ComboBoxItem>
                         <ComboBoxItem x:Name="InProgress">In Progress</ComboBoxItem>
@@ -92,7 +92,7 @@
                                         <DataTemplate>
                                             <WrapPanel>
                                                
-                                                        <materialDesign:Card Padding="2" Margin="10, 2,10,2" Style="{ DynamicResource  CardStyle1 }" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ShadowAssist.ShadowEdges="Bottom"  BorderBrush="LightGray"  UniformCornerRadius="1"  Width="346" >
+                                                 <materialDesign:Card Padding="2" Margin="10, 2,10,2" Style="{ DynamicResource  CardStyle1 }" materialDesign:ShadowAssist.ShadowDepth="Depth0" materialDesign:ShadowAssist.ShadowEdges="Bottom"  BorderBrush="LightGray"  UniformCornerRadius="1"  Width="346" >
                                                     <Grid  Margin="0" Height="70">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="25*" />

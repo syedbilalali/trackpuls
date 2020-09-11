@@ -25,6 +25,7 @@ namespace trackpuls.ViewModels
         private Screen view_parent;
         private TaskData _selectedTaskData;
         private int _selectedIndex;
+        private string _project_name;
 
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         Stopwatch stopWatch = new Stopwatch();
@@ -35,9 +36,12 @@ namespace trackpuls.ViewModels
             this.parent = parent;
             this.view_parent = view_parent;
             UserData userData = (UserData)App.Current.Properties["userdata"];
+            Project data = (Project)App.Current.Properties["project"];
+            System.Windows.MessageBox.Show("Project Name : " + data.name);
             if (userData != null)
             {
-                GetTasks(userData.id.ToString());
+                GetTasks(userData.id.ToString(), data.project_id.ToString());
+                Project_Name = data.name;
             }
             dispatcherTimer.Tick += new EventHandler(dt_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -72,10 +76,6 @@ namespace trackpuls.ViewModels
             set { _cp = value; NotifyOfPropertyChange(() => Cp_Task); }
         }
         #endregion
-        public void btnSelectCompany()
-        {
-           //  System.Windows.MessageBox.Show(" Hello World");
-        }
         public void btnBackProjects()
         {
 
@@ -83,12 +83,12 @@ namespace trackpuls.ViewModels
             tsd.setScreen(new TimeTrackViewModel(this.parent, this.view_parent));
 
         }
-        public async void GetTasks(string userid)
+        public async void GetTasks(string userid, string project_id)
         {
             try
             {
 
-                TaskResp tr = await GetTasks1(userid);
+                TaskResp tr = await GetTasks1(userid, project_id);
                 if (tr.status == "true")
                 {
                     // System.Windows.MessageBox.Show(" Task Count : " + tr.data.Count());
@@ -115,8 +115,6 @@ namespace trackpuls.ViewModels
                             //Completed
                             Cp_Task.Add(task);
                         }
-
-
                     }
                 }
                 else
@@ -127,42 +125,57 @@ namespace trackpuls.ViewModels
             }
             catch (Exception e)
             {
-
                 var parent = this.parent as MainViewModel;
                 parent.showMessage(" " + e.Message + " ");
 
             }
         }
-        async Task<TaskResp> GetTasks1(string userid)
+        public string Project_Name
+        {
+            get
+            {
+                return _project_name;
+            }
+            set
+            {
+                _project_name = value;
+                NotifyOfPropertyChange(() => Project_Name);
+               // NotifyOfPropertyChange(() => NoValidationErrors);
+            }
+        }
+        async Task<TaskResp> GetTasks1(string userid , string project_id)
         {
             var tsk = Task<Employee>.Run(() =>
             {
                 Thread.Sleep(100);
-                return TaskServices.p_TaskList(userid);
+                return TaskServices.p_TaskList(userid, project_id);
             });
             return await tsk;
         }
         public void RunTimer(TaskData td)
         {
-           // System.Windows.MessageBox.Show("Details" + td.name);
+           // System.Windows.MessageBox.Show(" Click on Button ");
             _selectedIndex = Nt_Task.IndexOf(td);
-            if (!td.isRunning) {
+                if (!td.isRunning)
+                {
 
-                Nt_Task[_selectedIndex].status  = "S";
-                Nt_Task[_selectedIndex].isRunning = true;
-                startTime();
+                    Nt_Task[_selectedIndex].status = "S";
+                    Nt_Task[_selectedIndex].isRunning = true;
+                    startTime();
 
-            }else
-            {
-                Nt_Task[_selectedIndex].status = "P";
-                Nt_Task[_selectedIndex].isRunning = false;
-                // System.Windows.MessageBox.Show(" Already Running ");
-                stopTime();
-            }
+                }
+                else
+                {
+                    Nt_Task[_selectedIndex].status = "P";
+                    Nt_Task[_selectedIndex].isRunning = false;
+
+                    stopTime();
+                }
+            
            
         }
         private void startTime() {
-            
+
              stopWatch.Start(); 
              dispatcherTimer.Start();  
         }

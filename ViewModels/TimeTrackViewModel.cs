@@ -108,9 +108,13 @@ namespace trackpuls.ViewModels
         }
         public void ViewTask(Project data) {
 
-            System.Windows.MessageBox.Show(" Project ID " + data.project_id + " Project Name : " + data.name);
-            TrackMainViewModel tsd = (TrackMainViewModel)this.view_parent;
-            tsd.setScreen(new TaskViewModel(this.parent, this.view_parent));
+            //  System.Windows.MessageBox.Show("Project ID " + data.project_id);
+            if (data !=  null) {
+                App.Current.Properties["project"] = (Project)data;
+                TrackMainViewModel tsd = (TrackMainViewModel)this.view_parent;
+                tsd.setScreen(new TaskViewModel(this.parent, this.view_parent));
+            }
+           
         }
         #endregion
     }

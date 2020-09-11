@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using trackpuls.Models;
 
 namespace trackpuls.Views
 {
     /// <summary>
-    /// Interaction logic for TimeTrackView.xaml
+    /// Interaction logic for TaskFullView.xaml
     /// </summary>
-    public partial class TimeTrackView : UserControl
+    public partial class TaskFullView : UserControl
     {
-        public TimeTrackView()
+        public TaskFullView()
         {
             InitializeComponent();
         }

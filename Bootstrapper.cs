@@ -231,7 +231,7 @@ namespace trackpuls
                     if (App.Current.Properties["userdata"] != null) {
                         
                         UserData userdata = (UserData)App.Current.Properties["userdata"];
-                     //   ScreenResp resp = await ScreenshotService.p_UploadScreenshot(userdata.id, data);
+                        ScreenResp resp = await ScreenshotService.p_UploadScreenshot(userdata.id, data);
                         //if (resp.status == "true")
                         //{
                         // // System.Windows.MessageBox.Show("Screenshot Uploaded " + resp.message +" User ID " + userdata.id);
@@ -259,11 +259,11 @@ namespace trackpuls
             if (!exists)
             {
                 DirectoryInfo di = System.IO.Directory.CreateDirectory(file);
-                System.Windows.MessageBox.Show("The Folder is created Sucessfully");
+        //        System.Windows.MessageBox.Show("The Folder is created Sucessfully");
             }
             else
             {
-                System.Windows.MessageBox.Show("The Folder already exists");
+              //  System.Windows.MessageBox.Show("The Folder already exists");
             }
             DirectoryInfo dInfo = new DirectoryInfo(file);
             DirectorySecurity dSecurity = dInfo.GetAccessControl();
